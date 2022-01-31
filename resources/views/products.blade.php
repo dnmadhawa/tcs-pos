@@ -1,5 +1,12 @@
 @extends('layouts.admin')
 
+@section('stylesheet')
+<!-- DataTables -->
+<link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+<link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+<link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+@endsection
+
 @section('content')
 {{-- <div class="row justify-content-center">
     <div class="col-md-8">
@@ -14,14 +21,14 @@
         <h1>Products Table</h1>
     </div>
 </div> --}}
-<div class="card">
-    <div class="card-header">
-      <h3 class="card-title">DataTable with default features</h3>
-    </div>
-    <!-- /.card-header -->
-    <div class="card-body">
-      <table id="example1" class="table table-bordered table-striped">
-        <thead>
+<div class=" card">
+  <div class="card-header">
+    <h3 class="card-title">DataTable with default features</h3>
+  </div>
+  <!-- /.card-header -->
+  <div class="card-body">
+    <table id="example1" class="table table-bordered table-striped">
+      <thead>
         <tr>
           <th>Rendering engine</th>
           <th>Browser</th>
@@ -29,8 +36,8 @@
           <th>Engine version</th>
           <th>CSS grade</th>
         </tr>
-        </thead>
-        <tbody>
+      </thead>
+      <tbody>
         <tr>
           <td>Trident</td>
           <td>Internet
@@ -438,8 +445,8 @@
           <td>-</td>
           <td>U</td>
         </tr>
-        </tbody>
-        <tfoot>
+      </tbody>
+      <tfoot>
         <tr>
           <th>Rendering engine</th>
           <th>Browser</th>
@@ -447,12 +454,17 @@
           <th>Engine version</th>
           <th>CSS grade</th>
         </tr>
-        </tfoot>
-      </table>
-    </div>
-    <!-- /.card-body -->
+      </tfoot>
+    </table>
   </div>
-  <!-- /.card -->
+  <!-- /.card-body -->
+</div>
+<!-- /.card -->
+
+
+@endsection
+
+@section('script')
 <!-- DataTables  & Plugins -->
 <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
@@ -466,9 +478,25 @@
 <script src="{{ asset('plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
 <script src="{{ asset('plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
 <script src="{{ asset('plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
-<!-- AdminLTE App -->
-<script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="{{ asset('dist/js/demo.js') }}"></script>
+
 <!-- Page specific script -->
+<script>
+  $(function() {
+    $("#example1").DataTable({
+      "responsive": true,
+      "lengthChange": false,
+      "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+</script>
 @endsection
