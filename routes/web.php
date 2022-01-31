@@ -22,6 +22,8 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('/product', [App\Http\Controllers\ProductsController::class, 'index'])->name('product');
+
 Route::resources([
     'invoice' => InvoiceController::class,
 ]);
