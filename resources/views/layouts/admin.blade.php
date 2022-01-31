@@ -34,6 +34,8 @@
     <link rel="stylesheet" href="{{ asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
     <!-- JQVMap -->
     <link rel="stylesheet" href="{{ asset('plugins/jqvmap/jqvmap.min.css') }}">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="../../plugins/select2/css/select2.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
     <!-- overlayScrollbars -->
@@ -49,7 +51,7 @@
 
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="dist/img/logo.png" alt="AdminLTELogo" height="150" width="150">
+            <img class="animation__shake" src="{{ asset('dist/img/logo.png') }}" alt="AdminLTELogo" height="150" width="150">
         </div>
 
         <!-- Navbar -->
@@ -114,8 +116,8 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="home" class="brand-link">
-                <img src="dist/img/logo.png" alt="TSC Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+            <a href="{{url('/home')}}" class="brand-link">
+                <img src="{{ asset('dist/img/logo.png') }}" alt="TSC Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light">TCS</span>
             </a>
 
@@ -140,7 +142,7 @@
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                         <li class="nav-item">
-                            <a href="home" class="nav-link">
+                            <a href="{{url('/home')}}" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Dashboard
@@ -186,6 +188,8 @@
     </script>
     <!-- Bootstrap 4 -->
     <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <!-- Select2 -->
+    <script src="../../plugins/select2/js/select2.full.min.js"></script>
     <!-- ChartJS -->
     <script src="{{ asset('plugins/chart.js/Chart.min.js') }}"></script>
     <!-- Sparkline -->
@@ -209,7 +213,13 @@
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('dist/js/demo.js') }}"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <!-- <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script> -->
+    <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
+    <script>
+        $(function() {
+            //Initialize Select2 Elements
+            $('.select2').select2();
+        })
+    </script>
 </body>
 
 </html>
