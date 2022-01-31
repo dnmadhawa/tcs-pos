@@ -1,5 +1,10 @@
 @extends('layouts.admin')
 
+@section('stylesheet')
+<!-- Select2 -->
+<link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}">
+@endsection
+
 @section('content')
 <!-- Content Header (Page header) -->
 <div class="content-header">
@@ -96,4 +101,15 @@
 
 
 
+@endsection
+
+@section('script')
+<script src="{{ asset('plugins/select2/js/select2.full.min.js') }}">
+</script>
+<script>
+    $(function() {
+        //Initialize Select2 Elements
+        $('.select2').select2();
+    })
+</script>
 @endsection
