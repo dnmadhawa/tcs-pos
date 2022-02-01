@@ -33,51 +33,48 @@
         <div class="card card-primary">
           <!-- /.card-header -->
           <!-- form start -->
+        {{-- {{ Form::open(array('url' => '{{./product}}', 'method' => 'put')) }}
+        {{csrf_field()}}
+        <div class="card-body">
+            <div class="form-group">
+                {{ Form::label('itemId', 'Item ID') }}
+                {{ Form::text('itemId','',['class'=>'form-control', 'placeholder'=>'Enter Item ID','id'=>'exampleInputEmail1']) }}
+            </div>    
+        </div>    
+        
+        {{ Form::close() }}             --}}
+
+
+          {{-- --------------------------------------------------------------------- --}}
           <form action="{{url('./product')}}" method='post'>
+            {{csrf_field()}}
             <div class="card-body">
               <div class="form-group">
-                <label for="itemId">Item Id</label>
-                <input type="text" name="id" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                <label for="productid">Product ID</label>
+                <input type="text" name="id" class="form-control" id="#" placeholder="Enter Product ID">
               </div>
               <div class="form-group">
-                <label for="exampleInputEmail1">Item Name</label>
-                <input type="text" name="itemName" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                <label for="barcodeid">Barcode ID</label>
+                <input type="text" name="bid" class="form-control" id="#" placeholder="Enter Barcode ID">
               </div>
               <div class="form-group">
-                <label for="exampleInputEmail1">Sales Price</label>
-                <input type="text" name="#" class="form-control amount" id="exampleInputEmail1" placeholder="Enter email">
+                <label for="productname">Product Name</label>
+                <input type="text" name="name" class="form-control" id="#" placeholder="Enter Product Name">
               </div>
               <div class="form-group">
-                <label for="exampleInputEmail1">Quantity</label>
-                <input type="text" name="#" class="form-control amount" id="exampleInputEmail1" placeholder="Enter email">
+                <label for="salesprice">Sales Price</label>
+                <input type="text" name="sprice" class="form-control amount" id="#" placeholder="Enter Sales Price">
               </div>
               <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" name="#" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                <label for="purchaseprice">Purchase Price</label>
+                <input type="text" name="pprice" class="form-control" id="#" placeholder="Enter Purchase Price">
               </div>
               <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" name="#" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-              </div>
-              <div class="form-group">
-                <label for="exampleInputFile">File input</label>
-                <div class="input-group">
-                  <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="exampleInputFile">
-                    <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                  </div>
-                  <div class="input-group-append">
-                    <span class="input-group-text">Upload</span>
-                  </div>
-                </div>
-              </div>
-              <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                <label for="quantity">Quantity</label>
+                <input type="text" name="quantity" class="form-control amount" id="#" placeholder="Enter Quantity">
               </div>
             </div>
             <!-- /.card-body -->
-
             <div class="card-footer">
               <button type="submit" class="btn btn-primary">Submit</button>
             </div>
