@@ -14,7 +14,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        return view('products.index');
+        return dd(Product::all());
     }
 
     /**
@@ -104,5 +104,15 @@ class ProductsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * api get data
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getProducts()
+    {
+        return Product::all();
     }
 }
