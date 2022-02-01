@@ -6,6 +6,8 @@
 
 @section('content')
 
+@include('inc.messages')
+
 <section class="content-header">
   <div class="container-fluid">
     <div class="row mb-2">
@@ -49,10 +51,6 @@
           <form action="{{url('./product')}}" method='post'>
             {{csrf_field()}}
             <div class="card-body">
-              <div class="form-group">
-                <label for="productid">Product ID</label>
-                <input type="text" name="id" class="form-control" id="#" placeholder="Enter Product ID">
-              </div>
               <div class="form-group">
                 <label for="barcodeid">Barcode ID</label>
                 <input type="text" name="bid" class="form-control" id="#" placeholder="Enter Barcode ID">

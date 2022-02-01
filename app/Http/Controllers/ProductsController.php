@@ -36,18 +36,29 @@ class ProductsController extends Controller
     public function store(Request $request)
     {
 
+
+        // dd($request->all());
         $product =new Product();
 
         $validated = $request->validate([
-            // 'itemId' => 'required|unique:Id|max:255',
-            // 'bid' => 'required',
-            // 'barcodeid' => 'required',
+            'bid' => 'required|max:50',
+            'name' => 'required|max:100',
+            'sprice' => 'required',
+            'pprice' => 'required',
+            'quantity' => 'required',
 
         ]);
 
-        $product->product=$request->product;
-        
-        return view('products.create');
+        $product->barcodeid=$request->bid;
+        $product->productname=$request->name;
+        $product->salesprice=$request->sprice;
+        $product->purchaseprice=$request->pprice;
+        $product->quantity=$request->quantity;
+        $product->save();
+
+        $data=Product::all();
+        dd($data);      
+        //return view('products.create');
     }
 
     /**
