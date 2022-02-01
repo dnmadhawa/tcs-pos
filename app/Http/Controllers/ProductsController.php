@@ -14,7 +14,8 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        return dd(Product::all());
+        return view('products.index');
+        // return dd(Product::all());
     }
 
     /**
@@ -38,7 +39,7 @@ class ProductsController extends Controller
 
 
         // dd($request->all());
-        $product =new Product();
+        $product = new Product();
 
         $validated = $request->validate([
             'bid' => 'required|max:50',
@@ -49,15 +50,15 @@ class ProductsController extends Controller
 
         ]);
 
-        $product->barcodeid=$request->bid;
-        $product->productname=$request->name;
-        $product->salesprice=$request->sprice;
-        $product->purchaseprice=$request->pprice;
-        $product->quantity=$request->quantity;
+        $product->barcodeid = $request->bid;
+        $product->productname = $request->name;
+        $product->salesprice = $request->sprice;
+        $product->purchaseprice = $request->pprice;
+        $product->quantity = $request->quantity;
         $product->save();
 
-        $data=Product::all();
-        dd($data);      
+        $data = Product::all();
+        dd($data);
         //return view('products.create');
     }
 
