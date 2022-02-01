@@ -13,7 +13,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        return view('products');
+        return view('products.index');
     }
 
     /**
@@ -23,7 +23,7 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        //
+        return view('products.create');
     }
 
     /**
@@ -34,7 +34,11 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'itemId' => 'required|unique:Id|max:255',
+            'itemName' => 'required',
+        ]);
+        return 123;
     }
 
     /**

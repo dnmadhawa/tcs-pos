@@ -22,7 +22,11 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/product', [App\Http\Controllers\ProductsController::class, 'index'])->name('product');
+// Route::get('/product', [App\Http\Controllers\ProductsController::class, 'index'])->name('product');
+
+Route::resources([
+    'product' => ProductsController::class,
+]);
 
 Route::resources([
     'invoice' => InvoiceController::class,
