@@ -26,15 +26,18 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th style="width: 10px">#</th>
-                            <th>Task</th>
-                            <th>Progress</th>
-                            <th style="width: 40px">Label</th>
+                            <th>Barcode</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Discount</th>
+                            <th>Sale Price</th>
+                            <th>#</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>1.</td>
+                            <td><input type="text" class="form-control" value="0"></td>
                             <td>
                                 <div class="form-group">
                                     <select class="select2" style="width: 100%;">
@@ -48,22 +51,20 @@
                                     </select>
                                 </div>
                             </td>
-                            <td>
-                                <div class="progress progress-xs">
-                                    <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                                </div>
-                            </td>
-                            <td><span class="badge bg-danger">55%</span></td>
+                            <td><input type="text" class="form-control" value="0" readonly></td>
+                            <td><input type="text" class="form-control" value="0"></td>
+                            <td><input type="text" class="form-control" value="0"></td>
+                            <td><input type="text" class="form-control" value="0" readonly></td>
+
                         </tr>
                         <tr>
-                            <td>2.</td>
+                            <td>ASD1025</td>
                             <td>Clean database</td>
-                            <td>
-                                <div class="progress progress-xs">
-                                    <div class="progress-bar bg-warning" style="width: 70%"></div>
-                                </div>
-                            </td>
-                            <td><span class="badge bg-warning">70%</span></td>
+                            <td><input type="text" class="form-control" value="0" readonly></td>
+                            <td><input type="text" class="form-control" value="0"></td>
+                            <td><input type="text" class="form-control" value="0"></td>
+                            <td><input type="text" class="form-control" value="0" readonly></td>
+                            <td><i class="fa fa-trash text-danger"></i></td>
                         </tr>
                     </tbody>
                 </table>
@@ -95,6 +96,7 @@
                     <input type="text" class="form-control" value="0" readonly>
                 </div>
             </div>
+            <button type="button" class="btn btn-block btn-primary">Submit</button>
         </div>
     </div>
 </div>

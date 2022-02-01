@@ -25,9 +25,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // Route::get('/product', [App\Http\Controllers\ProductsController::class, 'index'])->name('product');
 
 Route::resources([
+    'invoice' => InvoicesController::class,
     'product' => ProductsController::class,
-]);
-
-Route::resources([
-    'invoice' => InvoiceController::class,
 ]);

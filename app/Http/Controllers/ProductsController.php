@@ -38,7 +38,7 @@ class ProductsController extends Controller
             'itemId' => 'required|unique:Id|max:255',
             'itemName' => 'required',
         ]);
-        return 123;
+        return view('products.create');
     }
 
     /**
