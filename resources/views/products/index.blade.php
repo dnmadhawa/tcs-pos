@@ -8,19 +8,6 @@
 @endsection
 
 @section('content')
-{{-- <div class="row justify-content-center">
-    <div class="col-md-8">
-        <div class="card">
-            <form action=""></form>
-        </div>
-    </div>
-</div> --}}
-
-{{-- <div class="container">
-    <div class="text-center">
-        <h1>Products Table</h1>
-    </div>
-</div> --}}
 <div class=" card">
   <div class="card-header">
     <h3 class="card-title">Product Table</h3>
@@ -30,73 +17,63 @@
     <table id="example1" class="table table-bordered table-striped">
       <thead>
         <tr>
-          <th>Rendering engine</th>
-          <th>Browser</th>
-          <th>Platform(s)</th>
-          <th>Engine version</th>
-          <th>CSS grade</th>
+          <th>ID</th>
+          <th>Barcode ID</th>
+          <th>Product Name</th>
+          <th>Sales Price</th>
+          <th>Purchase Price</th>
+          <th>Quantity</th>
+          <th>Action</th>
         </tr>
       </thead>
+
       <tbody>
+        {{-- check products in database --}}
+      @if (count($products) > 0)
+      @foreach ($products as $product)
         <tr>
-          <td>Trident</td>
-          <td>Internet
-            Explorer 4.0
+          <td>{{ $product->id }}</td>
+          <td>{{ $product->barcodeid }}</td>
+          <td>{{ $product->productname  }}</td>
+          <td>{{ $product->salesprice }}</td>
+          <td>{{ $product->purchaseprice }}</td>
+          <td>{{ $product->quantity }}</td>
+          <td>
+
+            <form action="{{ url('product',  $product->id  ) }}" method="POST" onSubmit="return confirm('Do you want to delete?') ">
+              @csrf
+          
+              @method('DELETE')
+          
+              <button type="submit" class="btn btn-danger btn-block">Delete</button>
+          </form>
+
+            {{-- <a href="/products/{{ $product->id }}" class="btn btn-default">Delete</a> --}}
+            <a href="/products/{{ $product->id }}/edit" class="btn btn-default">Edit</a>
+
+            {{-- {!! Form::open(['action'=>['ProductsController', $product->id], 'method'=>'POST']) !!}
+                {{ Form::hidden('_method', 'DELETE') }}
+                {{ Form::submit('Delete', ['class'=>'btn btn-denger']) }}
+            {!! Form::close() !!} --}}
           </td>
-          <td>Win 95+</td>
-          <td> 4</td>
-          <td>X</td>
         </tr>
-        <tr>
-          <td>Trident</td>
-          <td>Internet Explorer 7</td>
-          <td>Win XP SP2+</td>
-          <td>7</td>
-          <td>A</td>
-        </tr>
-        <tr>
-          <td>Trident</td>
-          <td>AOL browser (AOL desktop)</td>
-          <td>Win XP</td>
-          <td>6</td>
-          <td>A</td>
-        </tr>
-        <tr>
-          <td>Gecko</td>
-          <td>Firefox 1.0</td>
-          <td>Win 98+ / OSX.2+</td>
-          <td>1.7</td>
-          <td>A</td>
-        </tr>
-        <tr>
-          <td>Gecko</td>
-          <td>Firefox 1.5</td>
-          <td>Win 98+ / OSX.2+</td>
-          <td>1.8</td>
-          <td>A</td>
-        </tr>
-        <tr>
-          <td>Gecko</td>
-          <td>Firefox 2.0</td>
-          <td>Win 98+ / OSX.2+</td>
-          <td>1.8</td>
-          <td>A</td>
-        </tr>
-        <tr>
-          <td>Other browsers</td>
-          <td>All others</td>
-          <td>-</td>
-          <td>-</td>
-          <td>U</td>
-        </tr>
+        @endforeach
+      {{-- check products in database  else part--}}
+      @else
+          <p>No Products Found</p>
+      {{-- endif --}}
+      @endif
       </tbody>
+
       <tfoot>
         <tr>
-          <th>Rendering engine</th>
-          <th>Browser</th>
-          <th>Platform(s)</th>
-          <th>Engine version</th>
-          <th>CSS grade</th>
+          <th>ID</th>
+          <th>Barcode ID</th>
+          <th>Product Name</th>
+          <th>Sales Price</th>
+          <th>Purchase Price</th>
+          <th>Quantity</th>
+          <th>Action</th>
         </tr>
       </tfoot>
     </table>

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
+use function GuzzleHttp\Promise\all;
+
 class ProductsController extends Controller
 {
     /**
@@ -13,8 +15,11 @@ class ProductsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('products.index');
+    {   
+        // return Product::all();
+        $products = Product::all();
+        // dd($products);
+        return view('products.index')->with('products', $products);
         // return dd(Product::all());
     }
 
@@ -57,9 +62,7 @@ class ProductsController extends Controller
         $product->quantity = $request->quantity;
         $product->save();
 
-        $data = Product::all();
-        dd($data);
-        //return view('products.create');
+        return view('products.create');
     }
 
     /**
@@ -81,7 +84,8 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product=Product::find($id);
+        return view('products.edit')->with('product', $product);
     }
 
     /**
@@ -104,7 +108,11 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product=Product::find($id);
+        // dd($product);
+        $product->delete();
+
+        return redirect('/product')->with('success', 'Product Removed');
     }
 
     /**
