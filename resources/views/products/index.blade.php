@@ -8,10 +8,26 @@
 @endsection
 
 @section('content')
+@include('inc.messages')
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h3>Product Table</h3>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item active">General Form</li>
+        </ol>
+      </div>
+    </div>
+  </div><!-- /.container-fluid -->
+</section>
+
+
+
 <div class=" card">
-  <div class="card-header">
-    <h3 class="card-title">Product Table</h3>
-  </div>
   <!-- /.card-header -->
   <div class="card-body">
     <table id="example1" class="table table-bordered table-striped">
@@ -51,10 +67,17 @@
             {{-- <a href="/products/{{ $product->id }}" class="btn btn-default">Delete</a> --}}
             <a href="/products/{{ $product->id }}/edit" class="btn btn-default">Edit</a>
 
-            {{-- {!! Form::open(['action'=>['ProductsController', $product->id], 'method'=>'POST']) !!}
-                {{ Form::hidden('_method', 'DELETE') }}
-                {{ Form::submit('Delete', ['class'=>'btn btn-denger']) }}
-            {!! Form::close() !!} --}}
+
+
+            {{-- TEST ONE FOR EDIT --}}
+            {{-- <form action="{{ url('product',  $product->id  ) }}" method="Get" onSubmit="return confirm('Do you want to Edit?') ">
+              @csrf
+          
+              @method('Edit')
+          
+              <button type="submit" class="btn btn-danger btn-block">Edit</button>
+          </form> --}}
+
           </td>
         </tr>
         @endforeach

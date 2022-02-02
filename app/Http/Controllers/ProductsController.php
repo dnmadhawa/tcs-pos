@@ -85,7 +85,8 @@ class ProductsController extends Controller
     public function edit($id)
     {
         $product=Product::find($id);
-        return view('products.edit')->with('product', $product);
+        dd($product);
+        // return view('products.edit')->with('product', $product);
     }
 
     /**
@@ -112,7 +113,7 @@ class ProductsController extends Controller
         // dd($product);
         $product->delete();
 
-        return redirect('product')->with('success', 'Product Removed');
+        return redirect('/product')->with('success', 'Product Removed');
     }
 
     /**
