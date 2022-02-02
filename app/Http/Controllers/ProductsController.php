@@ -62,7 +62,7 @@ class ProductsController extends Controller
         $product->quantity = $request->quantity;
         $product->save();
 
-        return view('products.create');
+        return redirect('product/create')->with('success', 'Product Added');
     }
 
     /**
@@ -112,7 +112,7 @@ class ProductsController extends Controller
         // dd($product);
         $product->delete();
 
-        return redirect('/product')->with('success', 'Product Removed');
+        return redirect('product')->with('success', 'Product Removed');
     }
 
     /**
