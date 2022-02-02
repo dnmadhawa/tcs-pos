@@ -1,7 +1,7 @@
 <template>
     <tbody>
         <tr v-for="(item,index) in items" v-bind:key="item.id">
-            <td>{{item.barcode}}</td>
+            <td>{{item.id}}</td>
             <td>{{item.name}}</td>
             <td><input type="text" class="form-control" :value='item.price' readonly></td>
             <td><input type="number" class="form-control" :value="item.qty" v-on:keyup="calSalePrice(index,$event.target.value)" @change="calSalePrice(index,$event.target.value)"></td>

@@ -15,6 +15,12 @@ class CreateInvoicesTable extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
+            $table->decimal('subtotal', 10, 2);
+            $table->decimal('discount', 10, 2);
+            $table->decimal('total', 10, 2);
+            $table->boolean('is_paid')->default(true);
+            $table->decimal('pay_amount', 10, 2);
+            $table->decimal('balance', 10, 2);
             $table->timestamps();
         });
     }

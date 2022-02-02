@@ -1,32 +1,33 @@
 <template>
 
-<div class="content">
+<div class="content" v-on:keyup="inputFocas($event)">
     <div class="row">
         <div class="col-md-9">
             <div class="card p-2 pt-4 d-flex flex-row justify-content-center">
                 <div class="form-group d-flex flex-row col-md-4 align-items-center">
                     <label class="m-3">Barcode</label>
-                    <input type="text" class="form-control" autofocus v-on:change="barcode($event)">
+                    <input ref="barcodeInput" type="text" class="form-control" v-model="inputBarcode" autofocus v-on:change="selectByBarcode($event)">
                 </div>
                 <div class="form-group d-flex flex-row col-md-4 align-items-center">
                     <label class="m-3">Name</label>
-                    <select class="select2" style="width: 100%;" v-on:change="barcossde($event)">
+                    <!-- <select class="select2" style="width: 100%;" @change="$emit('barcode', optionsArray)">
                         <option value="" disabled selected>Search By Name..</option>
-                        <option v-for="product in products" v-bind:key="product.id" :value="product.barcodeid" >{{product.productname}}</option>
-                    </select>
+                        <option v-for="product in products" v-bind:key="product.id" :value="product.barcodeid" @input="onSelect">{{product.productname}}</option>
+                    </select> -->
+                    <v-select class="vselect" :options="products" v-model="inputName" label="productname" @input="selectByName" :select-on-key-codes="[188, 13]"></v-select>
                 </div>
             </div>
             <div class="card p-2">
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Barcode</th>
-                            <th>Name</th>
-                            <th>Price</th>
+                            <th width="5%">id</th>
+                            <th width="20%">Name</th>
+                            <th >Price</th>
                             <th>Quantity</th>
                             <th>Discount</th>
                             <th>Sale Price</th>
-                            <th>#</th>
+                            <th width="5%"></th>
                         </tr>
                     </thead>
                      <Items @delete-item="deleteItem" @cal-sale-price="calSalePrice" @cal-discount-price="calDiscountPrice" :items="items"/>
@@ -43,7 +44,7 @@
                 </div>
                 <div class="form-group">
                     <label>Discount</label>
-                    <input type="number" class="form-control" v-model.number="tDiscount">
+                    <input ref="discount" type="number" class="form-control" v-model.number="tDiscount">
                 </div>
                 <div class="form-group">
                     <label>Total</label>
@@ -57,10 +58,10 @@
                 </div>
                 <div class="form-group">
                     <label>Balance</label>
-                    <input type="number" class="form-control" value="0" readonly v-model.number="balance">
+                    <input type="number" class="form-control" value="0" readonly v-model.number="balance" v-on:keyup="inputFocas">
                 </div>
             </div>
-            <button type="button" class="btn btn-block btn-primary" @click="getProducts">Submit</button>
+            <button type="button" class="btn btn-block btn-primary" @click="save" @keyup.left="save">Submit</button>
         </div>
     </div>
 </div>
@@ -68,9 +69,14 @@
 </template>
 
 <script>
+import vSelect from 'vue-select'
+import 'vue-select/dist/vue-select.css';
 import Items from './components/invoice/Items.vue';
     export default {
-        components: { Items },
+        components: { 
+            Items,
+            vSelect 
+        },
         name:'Invoiceform',
         data(){
             return{
@@ -78,51 +84,89 @@ import Items from './components/invoice/Items.vue';
                 products:[],
                 tDiscount:0,
                 payAmount:0,
+                inputName:[],
+                inputBarcode:""
             }
         },
         methods:{
+            save() {       
+                if (this.items.length>0) {                    
+                   
+                    axios.post('http://127.0.0.1:8000/api/saveinvoice',{
+                        items:this.items,
+                        subTotal:this.subTotal,
+                        tDiscount:this.tDiscount,
+                        total:this.total,
+                        payAmount:this.payAmount,
+                        balance:this.balance
+                        })
+                    .then(response =>{
+                        
+                        console.log(response);
+                    })
+                    .catch(error =>{
+                        console.log(error);
+                    })
+                } else{
+                    alert('No item found');
+                }
+            },
             getProducts() {
                 axios.get('http://127.0.0.1:8000/api/products')
                 .then(response =>{
                     
                     this.products =response.data;
-                    console.log(this.products);
                 })
                 .catch(error =>{
                     console.log(error);
                 })
+            },
+            selectByName(value){
+                if (this.isExist(value.id)) {
+                    alert('Already added');
+                    this.inputName=[];
+                }else{
+                    this.items.push({
+                        id:value.id,
+                        barcode:value.barcodeid,
+                        name:value.productname,
+                        price:value.salesprice,
+                        qty:1.00,
+                        discount:0.00,
+                        salePrice:value.salesprice,
+                    });
+                    this.inputName=[];
+                }
                 
             },
-            barcode(event){
-                this.products.find(product => {
-                    if (product.barcodeid === event.target.value) {
-                        console.log("gg");
+            selectByBarcode(event){
+                var ob = this.products.filter(function(product){
+                    if(product.barcodeid == event.target.value)
+                     return product;
+                });
+
+                if(ob.length > 0){
+                    if (this.isExist(ob[0].id)) {
+                        alert('Already added');
+                        this.inputBarcode="";
                     }else{
-                        console.log("hee");
+                        this.items.push({
+                            id:ob[0].id,
+                            barcode:ob[0].barcodeid,
+                            name:ob[0].productname,
+                            price:ob[0].salesprice,
+                            qty:1.00,
+                            discount:0.00,
+                            salePrice:ob[0].salesprice,
+                        });
+                        this.inputBarcode="";
+                        this.$refs.barcodeInput.focus();
                     }
-                })
-                // console.log(this.products.filter((product)=>product.barcodeid == event.target.value ));
-                // this.items.push({
-                //     id:6,
-                //     barcode:'TCS163',
-                //     name:'Moblile',
-                //     price:123.00,
-                //     qty:1.00,
-                //     discount:0.00,
-                //     salePrice:123.00,
-                // });
-            },
-            barcossde(event){
-                console.log("dsd");
-                // this.items.push({
-                //     id:6,
-                //     barcode:'TCS163',
-                //     name:'Moblile',
-                //     price:123.00,
-                //     qty:1.00,
-                //     discount:0.00,
-                //     salePrice:123.00,
-                // });
+                    
+                }else{
+                    alert('Barcode Not Valid');
+                    this.inputBarcode="";
+                }
             },
             deleteItem(id){
                 this.items = this.items.filter((item)=>item.id !== id );
@@ -139,24 +183,40 @@ import Items from './components/invoice/Items.vue';
                 var tot = this.items[index].price*this.items[index].qty;
                 this.items[index].salePrice = tot-this.items[index].discount;
             },
-            add(){
-                 this.items.push({
-                    id:6,
-                    barcode:'TCS163',
-                    name:'Moblile',
-                    price:123.00,
-                    qty:1.00,
-                    discount:0.00,
-                    salePrice:123.00,
+            isExist (p){
+                 var ob = this.items.filter(function(item){
+                    if(item.id == p)
+                     return item;
                 });
-            }
 
+                if(ob.length > 0){
+                    return true;
+                }else{
+                    return false;
+                }
+            },
+            _keyListener(e) {
+                console.log(e.code);
+                if (e.code == 'NumpadDivide') {
+                    this.$refs.discount.select();
+                } 
+                if (e.code == 'Insert') {
+                    this.save();
+                }   
+            // this.$refs.barcodeInput.focus();
+            },
+            inputFocas(e){
+                    console.log(e);
+            }
         },
         mounted: function(){
             
             this.getProducts();
             
         },
+        created: function () {
+            window.addEventListener('keyup', this._keyListener)
+    },
         computed: {
             total: function () {
                 return this.subTotal-this.tDiscount;
@@ -172,27 +232,12 @@ import Items from './components/invoice/Items.vue';
             
             },
         },
-        created(){
-            this.items =[
-                {
-                    id:1,
-                    barcode:'TCS123',
-                    name:'Moblile',
-                    price:123.00,
-                    qty:1.00,
-                    discount:0.00,
-                    salePrice:123.00,
-                },
-                {
-                    id:2,
-                    barcode:'TCS124',
-                    name:'Moblile',
-                    price:123.00,
-                    qty:1.00,
-                    discount:0.00,
-                    salePrice:123.00,
-                },
-            ]
-        }
     }
 </script>
+
+<style>
+
+.vselect {
+  width: 100%;
+}
+</style>
