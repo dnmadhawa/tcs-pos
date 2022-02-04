@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class InvoiceItem extends Model
 {
     use HasFactory;
-
+    protected $collection = 'InvoiceItem';
     protected $table = 'invoice_items';
 
     public function Invoice()

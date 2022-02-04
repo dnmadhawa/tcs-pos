@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\InvoiceItem;
+use App\Models\Invoice;
 use Illuminate\Http\Request;
 
 class InvoiceItemController extends Controller
@@ -81,5 +82,11 @@ class InvoiceItemController extends Controller
     public function destroy(InvoiceItem $invoiceItem)
     {
         //
+    }
+
+    public function getInvoiceItem($invoiceId)
+    {
+        $invoice = invoice::find($invoiceId);
+        return $invoice->load('InvoiceItems');
     }
 }

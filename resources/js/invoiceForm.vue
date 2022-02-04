@@ -44,7 +44,7 @@
                 </div>
                 <div class="form-group">
                     <label>Discount</label>
-                    <input ref="discount" type="number" class="form-control" v-model.number="tDiscount">
+                    <input ref="discount" type="number" class="form-control" v-model.number="tDiscount"  min="0">
                 </div>
                 <div class="form-group">
                     <label>Total</label>
@@ -54,7 +54,7 @@
             <div class="card p-3">
                 <div class="form-group">
                     <label>Pay Amount</label>
-                    <input type="number" class="form-control" v-model.number="payAmount">
+                    <input type="number" class="form-control" v-model.number="payAmount" min="0">
                 </div>
                 <div class="form-group">
                     <label>Balance</label>
@@ -85,34 +85,58 @@ import Items from './components/invoice/Items.vue';
                 tDiscount:0,
                 payAmount:0,
                 inputName:[],
-                inputBarcode:""
+                inputBarcode:"",
             }
         },
         methods:{
-            save() {       
+            save() {   
+                let validated = true;    
                 if (this.items.length>0) {                    
-                   
-                    axios.post('http://127.0.0.1:8000/api/saveinvoice',{
-                        items:this.items,
-                        subTotal:this.subTotal,
-                        tDiscount:this.tDiscount,
-                        total:this.total,
-                        payAmount:this.payAmount,
-                        balance:this.balance
+                    this.items.forEach(item => {
+                       if (!(item.qty > 0) ) {
+                            alert(item.name +' quantity must be greater than 1');
+                            validated = false;
+                       }else if(!(item.discount >= 0)){
+                            alert(item.name +' discount must be greater than 0');
+                            validated = false;
+                       }
+                   });
+
+                    if (!(this.tDiscount>=0)) {
+                        alert('Discount must be greater than 0');
+                        validated = false;
+                    }else if(!(this.payAmount>=0)){
+                        alert('Pay Amount must be greater than 0');
+                        validated = false;
+                    }
+
+                    if (validated) {   
+                        axios.post('/api/saveinvoice',{
+                            items:this.items,
+                            subTotal:this.subTotal,
+                            tDiscount:this.tDiscount,
+                            total:this.total,
+                            payAmount:this.payAmount,
+                            balance:this.balance
+                            })
+                        .then(response =>{
+                            if (response.data.isAdded) {
+                                alert('ssss');
+                                location.reload();
+                            }else{
+                                alert(response.data.error)
+                            }
                         })
-                    .then(response =>{
-                        
-                        console.log(response);
-                    })
-                    .catch(error =>{
-                        console.log(error);
-                    })
+                        .catch(error =>{
+                            console.log(error);
+                        })
+                    }
                 } else{
                     alert('No item found');
                 }
             },
             getProducts() {
-                axios.get('http://127.0.0.1:8000/api/products')
+                axios.get('/api/products')
                 .then(response =>{
                     
                     this.products =response.data;

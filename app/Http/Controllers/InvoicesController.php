@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Invoice;
 use App\Models\InvoiceItem;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class InvoicesController extends Controller
@@ -15,7 +16,7 @@ class InvoicesController extends Controller
      */
     public function index()
     {
-        //
+        return View('invoices.index');
     }
 
     /**
@@ -38,20 +39,38 @@ class InvoicesController extends Controller
     {
         $total = 0;
         foreach ($request->items as $item) {
-
+            $product = Product::find($item['id']);
+            if ($product->productname !=  $item['name'] && $product->salesprice !=  $item['price']) {
+                return [
+                    'isAdded' => false,
+                    'error' => 'Item not match',
+                ];
+            }
             if ($item['qty'] * $item['price'] - $item['discount'] == $item['salePrice']) {
                 $total += $item['qty'] * $item['price'] - $item['discount'];
             } else {
-                return "error";
+                return [
+                    'isAdded' => false,
+                    'error' => 'Item Sale price error',
+                ];
             }
         }
 
         if ($total != $request->subTotal) {
-            return "error";
+            return [
+                'isAdded' => false,
+                'error' => 'Item Sub Total error',
+            ];
         } elseif ($request->total != $request->subTotal - $request->tDiscount) {
-            return "error";
+            return [
+                'isAdded' => false,
+                'error' => 'Item total error',
+            ];
         } elseif ($request->total + $request->balance != $request->payAmount) {
-            return "error";
+            return [
+                'isAdded' => false,
+                'error' => 'Item payAmount error',
+            ];
         }
 
         $invoice = new Invoice;
@@ -63,26 +82,27 @@ class InvoicesController extends Controller
         $invoice->save();
 
         foreach ($request->items as $item) {
+
             $invoiceItem = new InvoiceItem;
             $invoiceItem->invoice_id = $invoice->id;
-            $invoiceItem->barcodeid = $item['barcode'];
+            $invoiceItem->product_id = $item['id'];
             $invoiceItem->productname = $item['name'];
             $invoiceItem->price = $item['price'];
             $invoiceItem->quantity = $item['qty'];
             $invoiceItem->pdiscount = $item['discount'];
             $invoiceItem->sale_price = $item['salePrice'];
             $invoiceItem->save();
+
+            $product = Product::find($item['id']);
+            $temp = $product->quantity;
+            $product->quantity = $temp - $item['qty'];
+            $product->save();
         }
-        // $invoiceItem = new InvoiceItem;
-        // $invoiceItem->invoice_id = $invoice->id;
-        // $invoiceItem->barcodeid = $request->items[0]['barcode'];
-        // $invoiceItem->productname = $request->items[0]['name'];
-        // $invoiceItem->price = $request->items[0]['price'];
-        // $invoiceItem->quantity = $request->items[0]['qty'];
-        // $invoiceItem->pdiscount = $request->items[0]['discount'];
-        // $invoiceItem->sale_price = $request->items[0]['salePrice'];
-        // $invoiceItem->save();
-        return $request;
+        return [
+            'isAdded' => true,
+            'id' => $invoice->id,
+            'error' => '',
+        ];
     }
 
     /**
@@ -94,7 +114,10 @@ class InvoicesController extends Controller
     public function show($id)
     {
         $invoice = invoice::find($id);
-        dd($invoice);
+        $data = $invoice->load('InvoiceItems');
+        $users = $invoice->load('InvoiceItems')->get();
+        dd($users->toArray());
+        return View('invoices.show')->with('data', $users);
     }
 
     /**
@@ -128,6 +151,16 @@ class InvoicesController extends Controller
      */
     public function destroy($id)
     {
-        //
+    }
+
+    /**
+     * get all data
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function getInvoice()
+    {
+        return invoice::All();
     }
 }
