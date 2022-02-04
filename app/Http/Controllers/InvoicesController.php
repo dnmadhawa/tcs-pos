@@ -9,6 +9,17 @@ use Illuminate\Http\Request;
 
 class InvoicesController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -117,6 +128,7 @@ class InvoicesController extends Controller
         $data = $invoice->load('InvoiceItems');
         // $users = $invoice->load('InvoiceItems')->get();
         // dd($users->toArray());
+        // print_r($data);
         return View('invoices.show')->with('data', $data);
     }
 

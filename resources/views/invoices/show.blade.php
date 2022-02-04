@@ -158,7 +158,6 @@
 </head>
 
 <body>
-    {{$data}}
 
     <div class="page-content container">
 
@@ -202,11 +201,11 @@
                                     Invoice
                                 </div>
 
-                                <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">ID:</span> #{{$data->id}}</div>
+                                <div class="my-2"> <span class="text-600 text-90">ID:</span> #{{$data->id}}</div>
 
-                                <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">Issue Date:</span>{{$data->created_at}}</div>
+                                <div class="my-2"> <span class="text-600 text-90">Issue Date:</span>{{$data->created_at}}</div>
 
-                                <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">Status:</span> <span class="badge bg-success badge-pill px-25">Paid</span></div>
+                                <div class="my-2"> <span class="text-600 text-90">Status:</span> <span class="badge bg-success badge-pill px-25">Paid</span></div>
                             </div>
                         </div>
                         <!-- /.col -->
@@ -215,77 +214,83 @@
                     <div class="mt-4">
                         <div class="row text-600 text-white bgc-default-tp1 py-25">
                             <div class="d-none d-sm-block col-1">#</div>
-                            <div class="col-9 col-sm-5">Description</div>
+                            <div class="col-9 col-sm-3">Description</div>
                             <div class="d-none d-sm-block col-4 col-sm-2">Qty</div>
                             <div class="d-none d-sm-block col-4 col-sm-2">Discount</div>
                             <div class="d-none d-sm-block col-sm-2">Unit Price</div>
                             <div class="col-2">Amount</div>
                         </div>
 
-                        <div class="text-95 text-secondary-d3">
-                            @php
-                            $count = 1;
-                            $items = $data;
-                            echo $data;
 
-                            @endphp
+                        @php
+                        echo "<script>
+                            var x = ".$data."
+                        </script>";
+                        @endphp
+                        <script>
+                            var i = 1;
+                            x.invoice_items.forEach(items => {
+                                console.log(items['productname']);
+                                var result = "<div class = 'row mb-2 mb-sm-0 py-25'> <div class = 'd-none d-sm-block col-1'> " + i + " </div><div class='col-9 col-sm-3'>" + items['productname'] + "</div> <div class = 'd-none d-sm-block col-2'> " + items['quantity'] + " </div><div class='d-none d-sm-block col-2 text-95'>" + items['pdiscount'] + "</div > <div class = 'd-none d-sm-block col-2 text-95' > " + items['price'] + " </div><div class='col-2 text-secondary-d2'>" + items['sale_price'] + "</div > </div>";
+                                document.write(result);
+                                i++;
+                            });
+                        </script>
 
-
-
-                            @php
-                            $count++;
-                            @endphp
-
-
-                        </div>
-
-
-
-                        <div class="row mt-3">
-                            <div class="col-12 col-sm-7 text-grey-d2 text-95 mt-2 mt-lg-0">
-
-                            </div>
-
-                            <div class="col-12 col-sm-5 text-grey text-90 order-first order-sm-last">
-                                <div class="row my-2">
-                                    <div class="col-7 text-right">
-                                        SubTotal
-                                    </div>
-                                    <div class="col-5">
-                                        <span class="text-120 text-secondary-d1">{{$data->subtotal}}</span>
-                                    </div>
-                                </div>
-
-                                <div class="row my-2">
-                                    <div class="col-7 text-right">
-                                        Discount
-                                    </div>
-                                    <div class="col-5">
-                                        <span class="text-110 text-secondary-d1">{{$data->discount}}</span>
-                                    </div>
-                                </div>
-
-                                <div class="row my-2 align-items-center bgc-primary-l3 p-2">
-                                    <div class="col-7 text-right">
-                                        Total Amount
-                                    </div>
-                                    <div class="col-5">
-                                        <span class="text-150 text-success-d3 opacity-2">{{$data->total}}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
 
                     </div>
+
+
+
+                    <div class="row mt-3">
+                        <div class="col-12 col-sm-7 text-grey-d2 text-95 mt-2 mt-lg-0">
+
+                        </div>
+
+                        <div class="col-12 col-sm-5 text-grey text-90 order-first order-sm-last">
+                            <div class="row my-2">
+                                <div class="col-7 text-right">
+                                    SubTotal
+                                </div>
+                                <div class="col-5">
+                                    <span class="text-120 text-secondary-d1">{{$data->subtotal}}</span>
+                                </div>
+                            </div>
+
+                            <div class="row my-2">
+                                <div class="col-7 text-right">
+                                    Discount
+                                </div>
+                                <div class="col-5">
+                                    <span class="text-110 text-secondary-d1">{{$data->discount}}</span>
+                                </div>
+                            </div>
+
+                            <div class="row my-2 align-items-center bgc-primary-l3 p-2">
+                                <div class="col-7 text-right">
+                                    Total Amount
+                                </div>
+                                <div class="col-5">
+                                    <span class="text-150 text-success-d3 opacity-2">{{$data->total}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
         </div>
     </div>
+    </div>
     <!-- ./wrapper -->
     <!-- Page specific script -->
     <script>
-        // window.addEventListener("load", window.print());
+        window.addEventListener("load", window.print());
+        window.onafterprint = function(event) {
+            history.back();
+        };
     </script>
 </body>
 

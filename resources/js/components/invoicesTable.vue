@@ -18,8 +18,86 @@
 
         
     </vue-bootstrap-table>
-    <b-modal ref="invoice_pre" size="lg" title="First Modal" ok-only no-stacking>
-    <p class="my-2">First Modal</p>
+    <b-modal ref="invoice_pre" size="lg" ok-only no-stacking>
+     <div class="card">
+         <div class="card-header p-4">
+             <div class="float-right">
+                 <h3 class="mb-0">Invoice #{{itemData.id}}</h3>
+                 <span>{{dataFormat(itemData.created_at)}}</span>
+                 <br>
+                 <span class="text-600 text-90">Status: </span><span v-if="this.itemData.is_paid" class="badge bg-success badge-pill px-25">Paid</span><span v-else class="badge bg-warning badge-pill px-25">Unpaid</span>
+             </div>
+         </div>
+         <div class="card-body">
+
+                 <table class="table table-striped">
+                     <thead>
+                         <tr>
+                             <th class="center">Id</th>
+                             <th>Item Name</th>
+                             <th class="right">Price</th>
+                             <th class="center">Qty</th>
+                             <th class="center">Discount</th>
+                             <th class="center">Amount</th>
+                         </tr>
+                     </thead>
+                     <tbody>
+                         <tr v-for="item in itemData.invoice_items" v-bind:key="item.id">
+                             <td class="center">{{item.product_id}}</td>
+                             <td class="left strong">{{item.productname}}</td>
+                             <td class="left">{{item.price}}</td>
+                             <td class="right">{{item.quantity}}</td>
+                             <td class="center">{{item.pdiscount}}</td>
+                             <td class="right">{{item.sale_price}}</td>
+                         </tr>
+                     </tbody>
+                 </table>
+
+             <div class="row">
+                 <div class="col-lg-4 col-sm-5">
+                 </div>
+                 <div class="col-lg-4 col-sm-5 ml-auto">
+                     <table class="table table-clear">
+                         <tbody>
+                             <tr>
+                                 <td class="left">
+                                     <strong class="text-dark">Subtotal</strong>
+                                 </td>
+                                 <td class="right">{{itemData.subtotal}}</td>
+                             </tr>
+                             <tr>
+                                 <td class="left">
+                                     <strong class="text-dark">Discount</strong>
+                                 </td>
+                                 <td class="right">{{itemData.discount}}</td>
+                             </tr>
+                             <tr>
+                                 <td class="left">
+                                     <strong class="text-dark">Total</strong> </td>
+                                 <td class="right">
+                                     <strong class="text-dark">{{itemData.total}}</strong>
+                                 </td>
+                             </tr>
+                             <tr>
+                                 <td class="left">
+                                     <strong class="text-dark">Pay Amount</strong>
+                                 </td>
+                                 <td class="right">{{itemData.pay_amount}}</td>
+                             </tr>
+                             <tr>
+                                 <td class="left">
+                                     <strong class="text-dark">Balance</strong> </td>
+                                 <td class="right">
+                                     <strong class="text-dark">{{itemData.balance}}</strong>
+                                 </td>
+                             </tr>
+                         </tbody>
+                     </table>                     
+                 </div>
+             </div>
+         </div>
+     </div>
+        <a :href='`/invoice/`+itemData.id' rel="noopener" target="_blank" class="btn btn-secondary"><i class="fas fa-print text-white"></i> Print</a>
     
   </b-modal>
 </div>
@@ -68,27 +146,27 @@ import VueBootstrapTable from "vue2-bootstrap-table2";
             }
         },
         methods:{
-            showModal() {
-                this.$refs['invoice_pre'].show()
-            },
-            hideModal() {
-                this.$refs['invoice_pre'].hide()
-            },
-            toggleModal() {
-                // We pass the ID of the button that we want to return focus to
-                // when the modal has hidden
-                this.$refs['my-modal'].toggle('#toggle-btn')
-            },
             handleRow (event, entry) {
-                console.log(entry);
                 this.$refs['invoice_pre'].show();
                     axios.get('/api/invoiceItem/'+entry['Id'])
                 .then(response =>{           
-                        console.log(response);
+                        this.itemData = response.data;
+                        this.$refs['invoice_pre'].show();
                 })
                 .catch(error =>{
                         console.log(error);
                     })
+            },
+            dataFormat(gdate){
+                var date = new Date(gdate);
+                            var dateStr =
+                            date.getFullYear() + "/"+ 
+                            ("00" + (date.getMonth() + 1)).slice(-2) + "/" +  
+                            ("00" + date.getDate()).slice(-2)  +" " +   
+                            ("00" + date.getHours()).slice(-2) + ":" +
+                            ("00" + date.getMinutes()).slice(-2) + ":" +
+                            ("00" + date.getSeconds()).slice(-2);
+                            return dateStr;
             },
             getInvoice() {
                     axios.get('/api/invoices')

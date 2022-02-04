@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-
+    <link rel="icon" href="{{ asset('dist/img/logo.png') }}" />
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
@@ -48,10 +48,14 @@
 <body class="hold-transition sidebar-mini layout-fixed sidebar-collapse">
     <div class="wrapper">
 
+        @if(Route::current()->getName() === 'home')
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
             <img class="animation__shake" src="{{ asset('dist/img/logo.png') }}" alt="AdminLTELogo" height="150" width="150">
         </div>
+        @endif
+
+
 
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -113,7 +117,7 @@
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <aside class="main-sidebar sidebar-dark-primary elevation-4 sidebar-no-expand">
             <!-- Brand Logo -->
             <a href="{{url('/home')}}" class="brand-link">
                 <img src="{{ asset('dist/img/logo.png') }}" alt="TSC Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
@@ -149,14 +153,37 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/widgets.html" class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
+                            <a href="{{url('/invoice/create')}}" class="nav-link">
+                                <i class="nav-icon fas fa-edit"></i>
                                 <p>
-                                    Widgets
+                                    Billing
                                 </p>
                             </a>
                         </li>
-
+                        <li class="nav-item">
+                            <a href="{{url('/invoice')}}" class="nav-link">
+                                <i class="nav-icon fas fa-book"></i>
+                                <p>
+                                    Invoices
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{url('/product/create')}}" class="nav-link">
+                                <i class="nav-icon fas fa-plus-circle"></i>
+                                <p>
+                                    Add Product
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{url('/product')}}" class="nav-link">
+                                <i class="nav-icon fas fa-list-alt"></i>
+                                <p>
+                                    Product List
+                                </p>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
