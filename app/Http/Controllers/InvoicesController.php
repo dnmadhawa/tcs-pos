@@ -115,9 +115,9 @@ class InvoicesController extends Controller
     {
         $invoice = invoice::find($id);
         $data = $invoice->load('InvoiceItems');
-        $users = $invoice->load('InvoiceItems')->get();
-        dd($users->toArray());
-        return View('invoices.show')->with('data', $users);
+        // $users = $invoice->load('InvoiceItems')->get();
+        // dd($users->toArray());
+        return View('invoices.show')->with('data', $data);
     }
 
     /**

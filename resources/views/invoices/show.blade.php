@@ -227,9 +227,7 @@
                             $count = 1;
                             $items = $data;
                             echo $data;
-                            foreach($items['relations'] as $x => $val) {
-                            echo "$x = $val<br>";
-                            }
+
                             @endphp
 
 
