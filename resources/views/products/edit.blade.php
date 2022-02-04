@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('stylesheet')
-
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 @endsection
 
 @section('content')
@@ -48,28 +48,34 @@
 
 
           {{-- --------------------------------------------------------------------- --}}
-          <form action="{{url('./product')}}" method='post'>
+          <form action="{{ url('product',  $product->id  ) }}" method='post'>
             {{csrf_field()}}
+            @method('PATCH')
             <div class="card-body">
               <div class="form-group">
                 <label for="barcodeid">Barcode ID</label>
-                <input type="text" name="bid" class="form-control" id="#" placeholder="Enter Barcode ID">
+                <input type="text" name="bid" class="form-control" id="disabledInput" placeholder="Enter Barcode ID" value="{{ $product->barcodeid }}" disabled>
+                <input type="hidden" name="bid" value="{{ $product->salesprice }}">
               </div>
               <div class="form-group">
                 <label for="productname">Product Name</label>
-                <input type="text" name="name" class="form-control" id="#" placeholder="Enter Product Name">
+                <input type="text" name="name" class="form-control" id="disabledInput" placeholder="Enter Product Name" value="{{ $product->productname }}" disabled>
+                <input type="hidden" name="name" value="{{ $product->salesprice }}">
               </div>
               <div class="form-group">
                 <label for="salesprice">Sales Price</label>
-                <input type="text" name="sprice" class="form-control amount" id="#" placeholder="Enter Sales Price">
+                <input type="text" name="sprice" class="form-control amount" id="#" placeholder="Enter Sales Price" value="{{ $product->salesprice }}">
+                <input type="hidden" name="sprice" value="{{ $product->salesprice }}">
               </div>
               <div class="form-group">
                 <label for="purchaseprice">Purchase Price</label>
-                <input type="text" name="pprice" class="form-control" id="#" placeholder="Enter Purchase Price">
+                <input type="text" name="pprice" class="form-control" id="#" placeholder="Enter Purchase Price" value="{{ $product->purchaseprice }}">
+                <input type="hidden" name="pprice" value="{{ $product->purchaseprice }}">
               </div>
               <div class="form-group">
                 <label for="quantity">Quantity</label>
-                <input type="text" name="quantity" class="form-control amount" id="#" placeholder="Enter Quantity">
+                <input type="text" name="quantity" class="form-control amount" id="#" placeholder="Enter Quantity" value="{{ $product->quantity }}">
+                <input type="hidden" name="quantity" value="{{ $product->quantity }}">
               </div>
             </div>
             <!-- /.card-body -->
@@ -90,5 +96,4 @@
 
       @section('script')
 
-      </script>
       @endsection

@@ -65,10 +65,8 @@
           </form>
 
             {{-- <a href="/products/{{ $product->id }}" class="btn btn-default">Delete</a> --}}
-            <a href="/products/{{ $product->id }}/edit" class="btn btn-default">Edit</a>
-
-
-
+            <a href="/product/{{ $product->id }}/edit" class="btn btn-default">Edit</a>
+ 
             {{-- TEST ONE FOR EDIT --}}
             {{-- <form action="{{ url('product',  $product->id  ) }}" method="Get" onSubmit="return confirm('Do you want to Edit?') ">
               @csrf
