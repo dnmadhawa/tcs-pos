@@ -119,7 +119,7 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4 sidebar-no-expand">
             <!-- Brand Logo -->
-            <a href="{{url('/home')}}" class="brand-link">
+            <a href="{{url('/dashboard')}}" class="brand-link">
                 <img src="{{ asset('dist/img/logo.png') }}" alt="TSC Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light">TCS</span>
             </a>
@@ -145,7 +145,7 @@
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                         <li class="nav-item">
-                            <a href="{{url('/home')}}" class="nav-link">
+                            <a href="{{url('/dashboard')}}" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Dashboard
@@ -238,8 +238,7 @@
     <script src="{{ asset('dist/js/adminlte.js') }}"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('dist/js/demo.js') }}"></script>
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <!-- <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script> -->
+
 
 
     @yield('script')
