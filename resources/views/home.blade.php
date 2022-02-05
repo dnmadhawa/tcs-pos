@@ -14,6 +14,9 @@
                 @endif
 
                 {{ __('You are logged in!') }}
+                <div>
+                    <a href="{{ url('product') }}"><button type="button" class="btn btn-outline-primary">Primary</button></a>
+                </div>
             </div>
         </div>
     </div>

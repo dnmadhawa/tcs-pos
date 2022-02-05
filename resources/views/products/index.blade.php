@@ -17,8 +17,9 @@
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active">General Form</li>
+          <li class="breadcrumb-item"><a href="{{ url('home') }}">Home</a></li>
+          <li class="breadcrumb-item"><a >Product Table</a></li>
+          <li class="breadcrumb-item"><a href="{{ url('product/create') }}">Add product</a></li>
         </ol>
       </div>
     </div>
@@ -55,27 +56,17 @@
           <td>{{ $product->purchaseprice }}</td>
           <td>{{ $product->quantity }}</td>
           <td>
-
-            <form action="{{ url('product',  $product->id  ) }}" method="POST" onSubmit="return confirm('Do you want to delete?') ">
+            <form action="{{ url('product',  $product->id  ) }}" method="POST" onSubmit="return confirm('Do you want to delete?') " >
               @csrf
           
               @method('DELETE')
-          
-              <button type="submit" class="btn btn-danger btn-block">Delete</button>
+              <button type="submit" class="btn btn-danger btn-block ">Delete</button>
+              <a href="/product/{{ $product->id }}/edit" >
+                <button type="button" class="btn btn-warning btn-block mt-1 ">Edit</button>
+              </a>
           </form>
-
             {{-- <a href="/products/{{ $product->id }}" class="btn btn-default">Delete</a> --}}
-            <a href="/product/{{ $product->id }}/edit" class="btn btn-default">Edit</a>
- 
-            {{-- TEST ONE FOR EDIT --}}
-            {{-- <form action="{{ url('product',  $product->id  ) }}" method="Get" onSubmit="return confirm('Do you want to Edit?') ">
-              @csrf
           
-              @method('Edit')
-          
-              <button type="submit" class="btn btn-danger btn-block">Edit</button>
-          </form> --}}
-
           </td>
         </tr>
         @endforeach
@@ -140,5 +131,15 @@
       "responsive": true,
     });
   });
+  
+  //message alert remover
+    $("document").ready(function(){
+
+    setTimeout(function(){
+        $("div.alert").remove();
+        
+    }, 5000);
+
+    })
 </script>
 @endsection

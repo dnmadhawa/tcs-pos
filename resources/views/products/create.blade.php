@@ -16,8 +16,9 @@
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active">General Form</li>
+          <li class="breadcrumb-item"><a href="{{ url('home') }}">Home</a></li>
+          <li class="breadcrumb-item"><a href="{{ url('product') }}">Product Table</a></li>
+          <li class="breadcrumb-item"><a >Add product</a></li>
         </ol>
       </div>
     </div>
@@ -48,28 +49,29 @@
 
 
           {{-- --------------------------------------------------------------------- --}}
+
           <form action="{{url('./product')}}" method='post'>
             {{csrf_field()}}
             <div class="card-body">
               <div class="form-group">
                 <label for="barcodeid">Barcode ID</label>
-                <input type="text" name="bid" class="form-control" id="#" placeholder="Enter Barcode ID">
+                <input type="text" name="bid" class="form-control" id="#" placeholder="Enter Barcode ID" required>
               </div>
               <div class="form-group">
                 <label for="productname">Product Name</label>
-                <input type="text" name="name" class="form-control" id="#" placeholder="Enter Product Name">
+                <input type="text" name="name" class="form-control" id="#" placeholder="Enter Product Name" required>
               </div>
               <div class="form-group">
                 <label for="salesprice">Sales Price</label>
-                <input type="text" name="sprice" class="form-control amount" id="#" placeholder="Enter Sales Price">
+                <input type="text" name="sprice" class="form-control amount" id="#" placeholder="Enter Sales Price" required>
               </div>
               <div class="form-group">
                 <label for="purchaseprice">Purchase Price</label>
-                <input type="text" name="pprice" class="form-control" id="#" placeholder="Enter Purchase Price">
+                <input type="text" name="pprice" class="form-control" id="#" placeholder="Enter Purchase Price" value="0" readonly>
               </div>
               <div class="form-group">
                 <label for="quantity">Quantity</label>
-                <input type="text" name="quantity" class="form-control amount" id="#" placeholder="Enter Quantity">
+                <input type="text" name="quantity" class="form-control amount" id="#" placeholder="Enter Quantity" required>
               </div>
             </div>
             <!-- /.card-body -->
@@ -81,14 +83,19 @@
         <!-- /.card -->
       </div>
 
-
-
-
-
-
       @endsection
 
       @section('script')
 
+      <script>
+        //message alert remover
+          $("document").ready(function(){
+
+          setTimeout(function(){
+              $("div.alert").remove();
+          
+          }, 5000);
+
+          })
       </script>
       @endsection

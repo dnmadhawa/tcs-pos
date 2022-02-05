@@ -47,8 +47,8 @@ class ProductsController extends Controller
         $product = new Product();
 
         $validated = $request->validate([
-            'bid' => 'required|max:50',
-            'name' => 'required|max:100',
+            'bid' => 'required|max:50|unique:products,barcodeid',
+            'name' => 'required|max:100|unique:products,productname',
             'sprice' => 'required',
             'pprice' => 'required',
             'quantity' => 'required',
@@ -98,10 +98,9 @@ class ProductsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $product = Product::find('id');
-        dd($product);
+        // dd($id);
 
-        $this->validate($request,[
+        $validated = $request->validate([
             'bid' => 'required|max:50',
             'name' => 'required|max:100',
             'sprice' => 'required',
@@ -110,14 +109,18 @@ class ProductsController extends Controller
 
         ]);
 
-        $product->barcodeid = $request->bid;
-        $product->productname = $request->name;
-        $product->salesprice = $request->sprice;
-        $product->purchaseprice = $request->pprice;
-        $product->quantity = $request->quantity;
+        $product = Product::find($id);
+        
+        // dd($product);
+        // $product->barcodeid = $request->input('bid');
+        // $product->productname = $request->input('name');
+        $product->salesprice = $request->input('sprice');
+        $product->purchaseprice = $request->input('pprice');
+        $product->quantity = $request->input('quantity');
         $product->save();
 
         return redirect('product')->with('success', 'Product Updated');
+        
     }
 
     /**
