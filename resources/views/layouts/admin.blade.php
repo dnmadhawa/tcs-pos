@@ -120,7 +120,7 @@
         <aside class="main-sidebar sidebar-dark-primary elevation-4 sidebar-no-expand">
             <!-- Brand Logo -->
             <a href="{{url('/dashboard')}}" class="brand-link">
-                <img src="{{ asset('dist/img/logo.png') }}" alt="TSC Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                <img src="{{ asset('dist/img/logow.jpg') }}" alt="TSC Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light">TCS</span>
             </a>
 
