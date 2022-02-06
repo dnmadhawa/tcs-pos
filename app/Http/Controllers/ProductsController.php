@@ -15,7 +15,7 @@ class ProductsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {
         // return Product::all();
         $products = Product::all();
         // dd($products);
@@ -47,22 +47,30 @@ class ProductsController extends Controller
         $product = new Product();
 
         $validated = $request->validate([
-            'bid' => 'required|max:50|unique:products,barcodeid',
+            // 'bid' => 'required|max:50|unique:products,barcodeid',
             'name' => 'required|max:100|unique:products,productname',
             'sprice' => 'required',
-            'pprice' => 'required',
             'quantity' => 'required',
 
         ]);
+        if (isset($request->pprice)) {
+            $pprice = $request->pprice;
+        } else {
+            $pprice = 0;
+        }
 
-        $product->barcodeid = $request->bid;
-        $product->productname = $request->name;
-        $product->salesprice = $request->sprice;
-        $product->purchaseprice = $request->pprice;
-        $product->quantity = $request->quantity;
-        $product->save();
+        $product = Product::find($id);
 
-        return redirect('product/create')->with('success', 'Product Added');
+
+
+        // $product->barcodeid = $request->bid;
+        // $product->productname = $request->name;
+        // $product->salesprice = $request->sprice;
+        // $product->purchaseprice = $pprice;
+        // $product->quantity = $request->quantity;
+        // $product->save();
+
+        // return redirect('product/create')->with('success', 'Product Added');
     }
 
     /**
@@ -84,7 +92,7 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        $product=Product::find($id);
+        $product = Product::find($id);
         // dd($product);
         return view('products.edit')->with('product', $product);
     }
@@ -110,7 +118,7 @@ class ProductsController extends Controller
         ]);
 
         $product = Product::find($id);
-        
+
         // dd($product);
         // $product->barcodeid = $request->input('bid');
         // $product->productname = $request->input('name');
@@ -120,7 +128,6 @@ class ProductsController extends Controller
         $product->save();
 
         return redirect('product')->with('success', 'Product Updated');
-        
     }
 
     /**
@@ -131,7 +138,7 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-        $product=Product::find($id);
+        $product = Product::find($id);
         // dd($product);
         $product->delete();
 

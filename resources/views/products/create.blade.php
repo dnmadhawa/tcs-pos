@@ -18,7 +18,7 @@
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="{{ url('home') }}">Home</a></li>
           <li class="breadcrumb-item"><a href="{{ url('product') }}">Product Table</a></li>
-          <li class="breadcrumb-item"><a >Add product</a></li>
+          <li class="breadcrumb-item"><a>Add product</a></li>
         </ol>
       </div>
     </div>
@@ -36,16 +36,16 @@
         <div class="card card-primary">
           <!-- /.card-header -->
           <!-- form start -->
-        {{-- {{ Form::open(array('url' => '{{./product}}', 'method' => 'put')) }}
-        {{csrf_field()}}
-        <div class="card-body">
+          {{-- {{ Form::open(array('url' => '{{./product}}', 'method' => 'put')) }}
+          {{csrf_field()}}
+          <div class="card-body">
             <div class="form-group">
-                {{ Form::label('itemId', 'Item ID') }}
-                {{ Form::text('itemId','',['class'=>'form-control', 'placeholder'=>'Enter Item ID','id'=>'exampleInputEmail1']) }}
-            </div>    
-        </div>    
-        
-        {{ Form::close() }}             --}}
+              {{ Form::label('itemId', 'Item ID') }}
+              {{ Form::text('itemId','',['class'=>'form-control', 'placeholder'=>'Enter Item ID','id'=>'exampleInputEmail1']) }}
+            </div>
+          </div>
+
+          {{ Form::close() }} --}}
 
 
           {{-- --------------------------------------------------------------------- --}}
@@ -67,7 +67,7 @@
               </div>
               <div class="form-group">
                 <label for="purchaseprice">Purchase Price</label>
-                <input type="number" name="pprice" class="form-control" id="#" placeholder="Enter Purchase Price" value="0" readonly>
+                <input type="number" name="pprice" class="form-control" id="#" placeholder="Enter Purchase Price" value="0">
               </div>
               <div class="form-group">
                 <label for="quantity">Quantity</label>
@@ -89,13 +89,13 @@
 
       <script>
         //message alert remover
-          $("document").ready(function(){
+        $("document").ready(function() {
 
-          setTimeout(function(){
-              $("div.alert").remove();
-          
+          setTimeout(function() {
+            $("div.alert").remove();
+
           }, 5000);
 
-          })
+        })
       </script>
       @endsection
