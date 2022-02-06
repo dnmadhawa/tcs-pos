@@ -63,15 +63,15 @@
               </div>
               <div class="form-group">
                 <label for="salesprice">Sales Price</label>
-                <input type="text" name="sprice" class="form-control amount" id="#" placeholder="Enter Sales Price" required>
+                <input type="number" name="sprice" class="form-control amount" id="#" placeholder="Enter Sales Price" required>
               </div>
               <div class="form-group">
                 <label for="purchaseprice">Purchase Price</label>
-                <input type="text" name="pprice" class="form-control" id="#" placeholder="Enter Purchase Price" value="0" readonly>
+                <input type="number" name="pprice" class="form-control" id="#" placeholder="Enter Purchase Price" value="0" readonly>
               </div>
               <div class="form-group">
                 <label for="quantity">Quantity</label>
-                <input type="text" name="quantity" class="form-control amount" id="#" placeholder="Enter Quantity" required>
+                <input type="number" name="quantity" class="form-control amount" id="#" placeholder="Enter Quantity" required>
               </div>
             </div>
             <!-- /.card-body -->
