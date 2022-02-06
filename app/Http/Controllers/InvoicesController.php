@@ -129,7 +129,9 @@ class InvoicesController extends Controller
         // $users = $invoice->load('InvoiceItems')->get();
         // dd($users->toArray());
         // print_r($data);
-        return View('invoices.show')->with('data', $data);
+        // return View('invoices.show')->with('data', $data);
+        return View('invoices.posinvoice')->with('data', $data);
+
     }
 
     /**
