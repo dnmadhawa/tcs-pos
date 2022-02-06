@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\NewCode;
 use Illuminate\Http\Request;
 
 use function GuzzleHttp\Promise\all;
@@ -59,18 +60,27 @@ class ProductsController extends Controller
             $pprice = 0;
         }
 
-        $product = Product::find($id);
+
+        if (isset($request->bid)) {
+            $barcode = $request->pprice;
+        } else {
+            $newcode = NewCode::find(1);
+            $barcode = $newcode->prefix . $newcode->newcode;
+
+            $newcode->newcode = $newcode->newcode + 1;
+            $newcode->save();
+        }
 
 
 
-        // $product->barcodeid = $request->bid;
-        // $product->productname = $request->name;
-        // $product->salesprice = $request->sprice;
-        // $product->purchaseprice = $pprice;
-        // $product->quantity = $request->quantity;
-        // $product->save();
+        $product->barcodeid = $barcode;
+        $product->productname = $request->name;
+        $product->salesprice = $request->sprice;
+        $product->purchaseprice = $pprice;
+        $product->quantity = $request->quantity;
+        $product->save();
 
-        // return redirect('product/create')->with('success', 'Product Added');
+        return redirect('product/create')->with('success', 'Product Added');
     }
 
     /**

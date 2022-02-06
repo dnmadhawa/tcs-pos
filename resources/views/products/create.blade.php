@@ -55,7 +55,7 @@
             <div class="card-body">
               <div class="form-group">
                 <label for="barcodeid">Barcode ID</label>
-                <input type="text" name="bid" class="form-control" id="#" placeholder="Enter Barcode ID" required>
+                <input type="text" name="bid" class="form-control" id="#" placeholder="Enter Barcode ID">
               </div>
               <div class="form-group">
                 <label for="productname">Product Name</label>
