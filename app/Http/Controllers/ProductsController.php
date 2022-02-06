@@ -62,7 +62,7 @@ class ProductsController extends Controller
 
 
         if (isset($request->bid)) {
-            $barcode = $request->pprice;
+            $barcode = $request->bid;
         } else {
             $newcode = NewCode::find(1);
             $barcode = $newcode->prefix . $newcode->newcode;
