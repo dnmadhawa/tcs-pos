@@ -48,7 +48,7 @@ class ProductsController extends Controller
         $product = new Product();
 
         $validated = $request->validate([
-            // 'bid' => 'required|max:50|unique:products,barcodeid',
+            'bid' => 'max:50|unique:products,barcodeid',
             'name' => 'required|max:100|unique:products,productname',
             'sprice' => 'required',
             'quantity' => 'required',
@@ -70,7 +70,6 @@ class ProductsController extends Controller
             $newcode->newcode = $newcode->newcode + 1;
             $newcode->save();
         }
-
 
 
         $product->barcodeid = $barcode;
