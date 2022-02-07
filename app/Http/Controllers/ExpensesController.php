@@ -50,8 +50,8 @@ class ExpensesController extends Controller
         $expenses->refnumber = $request->refnumber;
         $expenses->description = $request->description;
         $expenses->save();
-        
-        return redirect('expenses/create')->with('success', 'Product Added');
+
+        return redirect('expenses/' . $expenses->id)->with('success', 'Product Added');
     }
 
     /**

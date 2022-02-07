@@ -20,7 +20,8 @@
       position: relative;
       width: 8cm;
       margin: 0 auto;
-      margin-top: -10px color: #001028;
+      margin-top: -10px;
+      color: #001028;
       background: #FFFFFF;
       font-family: Arial, sans-serif;
       font-size: 13px;
@@ -50,7 +51,7 @@
       text-align: center;
       margin: 0 0 20px 0;
     }
-    
+
 
     #project {
       float: left;
@@ -250,9 +251,9 @@
   <script>
     window.addEventListener("load", window.print());
     window.onafterprint = function(event) {
-        history.back();
+      history.back();
     };
-</script>
+  </script>
 </body>
 
 </html>

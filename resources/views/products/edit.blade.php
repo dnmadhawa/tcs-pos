@@ -18,7 +18,7 @@
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="{{ url('home') }}">Home</a></li>
           <li class="breadcrumb-item"><a href="{{ url('product') }}">Product Table</a></li>
-          <li class="breadcrumb-item"><a >Edit product</a></li>
+          <li class="breadcrumb-item"><a>Edit product</a></li>
         </ol>
       </div>
     </div>
@@ -36,22 +36,22 @@
         <div class="card card-primary">
           <!-- /.card-header -->
           <!-- form start -->
-        {{-- {{ Form::open(array('url' => '{{./product}}', 'method' => 'put')) }}
-        {{csrf_field()}}
-        <div class="card-body">
+          {{-- {{ Form::open(array('url' => '{{./product}}', 'method' => 'put')) }}
+          {{csrf_field()}}
+          <div class="card-body">
             <div class="form-group">
-                {{ Form::label('itemId', 'Item ID') }}
-                {{ Form::text('itemId','',['class'=>'form-control', 'placeholder'=>'Enter Item ID','id'=>'exampleInputEmail1']) }}
-            </div>    
-        </div>    
-        
-        {{ Form::close() }}             --}}
+              {{ Form::label('itemId', 'Item ID') }}
+              {{ Form::text('itemId','',['class'=>'form-control', 'placeholder'=>'Enter Item ID','id'=>'exampleInputEmail1']) }}
+            </div>
+          </div>
+
+          {{ Form::close() }} --}}
 
 
           {{-- --------------------------------------------------------------------- --}}
           <form action="{{ url('product',  $product->id  ) }}" method="post" onSubmit="return confirm('Do you want to Edit?') ">
             {{csrf_field()}}
-            
+
             <div class="card-body">
               <div class="form-group">
                 <label for="barcodeid">Barcode ID</label>
@@ -60,7 +60,7 @@
               </div>
               <div class="form-group">
                 <label for="productname">Product Name</label>
-                <input type="text" name="name" class="form-control" id="#" placeholder="Enter Product Name" value="{{ $product->productname }}" readonly>
+                <input type="text" name="name" class="form-control" id="#" placeholder="Enter Product Name" value="{{ $product->productname }}" style="text-transform: capitalize;" readonly>
                 {{-- <input type="hidden" name="name" value="{{ $product->productname }}"> --}}
               </div>
               <div class="form-group">
@@ -97,15 +97,15 @@
       @endsection
 
       @section('script')
-          <script>
-            //message alert remover
-              $("document").ready(function(){
+      <script>
+        //message alert remover
+        $("document").ready(function() {
 
-              setTimeout(function(){
-                  $("div.alert").remove();
-              
-              }, 5000);
+          setTimeout(function() {
+            $("div.alert").remove();
 
-              })
-          </script>
+          }, 5000);
+
+        })
+      </script>
       @endsection

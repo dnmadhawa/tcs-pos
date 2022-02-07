@@ -14,7 +14,6 @@ class UtilitypaymentController extends Controller
      */
     public function index()
     {
-        
     }
 
     /**
@@ -50,8 +49,8 @@ class UtilitypaymentController extends Controller
         $utilitypayment->refnumber = $request->refnumber;
         $utilitypayment->description = $request->description;
         $utilitypayment->save();
-        
-        return redirect('utilitypayment/create')->with('success', 'Product Added');
+
+        return redirect('utilitypayment/' . $utilitypayment->id)->with('success', 'Product Added');
     }
 
     /**

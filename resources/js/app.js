@@ -30,6 +30,7 @@ Vue.use(IconsPlugin)
 
 Vue.component('invoice-form', require('./invoiceForm.vue').default);
 Vue.component('invoice-table', require('./components/invoicesTable.vue').default);
+Vue.component('box-list', require('./components/dashboard.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

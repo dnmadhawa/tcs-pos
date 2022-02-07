@@ -59,7 +59,7 @@
               </div>
               <div class="form-group">
                 <label for="productname">Product Name</label>
-                <input type="text" name="name" class="form-control" id="#" placeholder="Enter Product Name" required>
+                <input type="text" name="name" class="form-control" id="#" placeholder="Enter Product Name" style="text-transform: capitalize;" required>
               </div>
               <div class="form-group">
                 <label for="salesprice">Sales Price</label>
