@@ -247,6 +247,12 @@
 
     </div>
   </main>
+  <script>
+    window.addEventListener("load", window.print());
+    window.onafterprint = function(event) {
+        history.back();
+    };
+</script>
 </body>
 
 </html>

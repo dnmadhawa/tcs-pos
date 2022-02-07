@@ -27,4 +27,5 @@ Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'inde
 Route::resources([
     'invoice' => InvoicesController::class,
     'product' => ProductsController::class,
+    'utilitypayment' => UtilitypaymentController::class,
 ]);
