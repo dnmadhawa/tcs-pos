@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\utilitypayment;
+use App\Models\Expenses;
 use Illuminate\Http\Request;
 
-class UtilitypaymentController extends Controller
+class ExpensesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class UtilitypaymentController extends Controller
      */
     public function index()
     {
-        
+        //
     }
 
     /**
@@ -24,7 +24,7 @@ class UtilitypaymentController extends Controller
      */
     public function create()
     {
-        return view('utilitypayments.create');
+        return view('expenses.create');
     }
 
     /**
@@ -35,7 +35,7 @@ class UtilitypaymentController extends Controller
      */
     public function store(Request $request)
     {
-        $utilitypayment = new Utilitypayment();
+        $expenses = new Expenses();
 
         $validated = $request->validate([
             'type' => 'required',
@@ -45,13 +45,13 @@ class UtilitypaymentController extends Controller
 
         ]);
 
-        $utilitypayment->type = $request->type;
-        $utilitypayment->accnumber = $request->accnumber;
-        $utilitypayment->refnumber = $request->refnumber;
-        $utilitypayment->description = $request->description;
-        $utilitypayment->save();
+        $expenses->type = $request->type;
+        $expenses->accnumber = $request->accnumber;
+        $expenses->refnumber = $request->refnumber;
+        $expenses->description = $request->description;
+        $expenses->save();
         
-        return redirect('utilitypayment/create')->with('success', 'Product Added');
+        return redirect('expenses/create')->with('success', 'Product Added');
     }
 
     /**
@@ -62,8 +62,8 @@ class UtilitypaymentController extends Controller
      */
     public function show($id)
     {
-        $utilitypayment = Utilitypayment::find($id);
-        return View('utilitypayments.show')->with('utilitypayment', $utilitypayment);
+        $expenses = Expenses::find($id);
+        return View('utilitypayments.show')->with('expenses', $expenses);
     }
 
     /**

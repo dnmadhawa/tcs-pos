@@ -12,13 +12,13 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h3>Utility Payments</h3>
+        <h3>Expenses Payments</h3>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="{{ url('home') }}">Home</a></li>
           {{-- <li class="breadcrumb-item"><a href="{{ url('product') }}">Product Table</a></li> --}}
-          <li class="breadcrumb-item"><a>Utility Payments</a></li>
+          <li class="breadcrumb-item"><a>Expenses Payments</a></li>
         </ol>
       </div>
     </div>
@@ -34,31 +34,15 @@
       <div class="col-md-10">
         <!-- general form elements -->
         <div class="card card-primary">
-          <!-- /.card-header -->
-          <!-- form start -->
-          {{-- {{ Form::open(array('url' => '{{./product}}', 'method' => 'put')) }}
-          {{csrf_field()}}
-          <div class="card-body">
-            <div class="form-group">
-              {{ Form::label('itemId', 'Item ID') }}
-              {{ Form::text('itemId','',['class'=>'form-control', 'placeholder'=>'Enter Item ID','id'=>'exampleInputEmail1']) }}
-            </div>
-          </div>
-
-          {{ Form::close() }} --}}
-
-
-          {{-- --------------------------------------------------------------------- --}}
-
-          <form action="{{url('./utilitypayment')}}" method='post'>
+          <form action="{{url('./expenses')}}" method='post'>
             {{csrf_field()}}
             <div class="card-body">
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Select Type</label>
                     <select class="form-control" id="exampleFormControlSelect1" name="type">
                       <option value="eZcash">eZcash</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
+                      <option value="Electricity Bill">Electricity Bill</option>
+                      <option value="Water Bill">Water Bill</option>
                       <option value="4">4</option>
                       <option value="6">5</option>
                     </select>

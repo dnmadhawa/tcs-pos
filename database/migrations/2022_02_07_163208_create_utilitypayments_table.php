@@ -17,8 +17,8 @@ class CreateUtilitypaymentsTable extends Migration
             $table->id();
             $table->string('type');
             $table->string('accnumber', 20);
-            $table->decimal('refnumber');
-            $table->decimal('description');
+            $table->string('refnumber');
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }
