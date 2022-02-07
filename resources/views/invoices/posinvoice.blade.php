@@ -34,18 +34,17 @@
 
     #logo {
       text-align: center;
-      margin-bottom: 10px;
     }
 
     #logo img {
-      width: 5cm;
+      width: 4cm;
     }
 
     h1 {
       border-top: 1px solid black;
       border-bottom: 1px solid black;
       color: black;
-      font-size: 2.4em;
+      font-size: 2em;
       line-height: 1.4em;
       font-weight: normal;
       text-align: center;
@@ -143,17 +142,17 @@
 <body>
   <header class="clearfix">
     <div id="logo">
-      <img src="{{ asset('dist/img/logo.png') }}" class="max-width: 50% height: auto">
-      <div class="notice" style="font-size: 12px;">Supply Of Heavy Machinary Cylinder Repair Kits, Oilseals,O-rings,
-        Dust seal,Pressure seal, Floating seals & Every kind of NOK Seals.</div>
+      <img src="{{ asset('dist/img/logo.png') }}">
+      {{-- <div class="notice" style="font-size: 12px;">Supply Of Heavy Machinary Cylinder Repair Kits, Oilseals,O-rings,
+        Dust seal,Pressure seal, Floating seals & Every kind of NOK Seals.</div> --}}
     </div>
     <h1>INVOICE</h1>
     <div id="company" class="clearfix">
-      <div>Shop Name</div>
-      <div>Address</div>
+      <div>THUSHARA CELLULAR SERVICE</div>
+      <div>No. 8/3, Kururnegala Road, Makandura</div>
       {{-- <div>Branches:</div> --}}
-      <div>Phone Number</div>
-      <div><a href="mailto:company@example.com">Email</a></div>
+      <div>Tel :0777834254 / 07661122656</div>
+      <div>E-mail :<a href="#">thusharacom4@gmail.com</a></div>
     </div>
     <div id="project">
       <div><span>INVOICE NO</span> #{{$data->id}}</div>
@@ -240,10 +239,10 @@
     <div id="notices">
 
 
-      <div>NOTICE:</div>
-      <div class="notice">EXCHANGE WITH IN 7 DAYS</div>
+      {{-- <div>NOTICE:</div> --}}
+      <div class="notice">All Kinds of Phone models and accessories with company warranty & phone repairs</div>
 
-      <div class="notice" style="font-size: 15px;"><strong>THANK YOU COME AGAIN!!</strong></div>
+      <div class="notice" style="font-size: 13px;"><strong>GOOD PURCHASED UNDER GOOD WORLING CONDITIONS <br> THANK YOU COME AGAIN!!</strong></div>
 
 
     </div>
