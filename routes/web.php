@@ -29,4 +29,5 @@ Route::resources([
     'product' => ProductsController::class,
     'utilitypayment' => UtilitypaymentController::class,
     'expenses' => ExpensesController::class,
+    'PaymentType' => PaymentTypesController::class,
 ]);

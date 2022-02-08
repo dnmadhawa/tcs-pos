@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\utilitypayment;
-use App\Models\PaymentType;
 use Illuminate\Http\Request;
+use App\Models\PaymentType;
 
-class UtilitypaymentController extends Controller
+class PaymentTypesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,6 +14,7 @@ class UtilitypaymentController extends Controller
      */
     public function index()
     {
+        //
     }
 
     /**
@@ -24,9 +24,7 @@ class UtilitypaymentController extends Controller
      */
     public function create()
     {
-        $paymentTypes = PaymentType::all();
-        // dd($products);
-        return view('utilitypayments.create')->with('paymentTypes', $paymentTypes);
+        return view('paymentTypes.create');
     }
 
     /**
@@ -37,30 +35,17 @@ class UtilitypaymentController extends Controller
      */
     public function store(Request $request)
     {
-        $utilitypayment = new Utilitypayment();
+        $PaymentType = new PaymentType();
 
         $validated = $request->validate([
-            'type' => 'required',
-            'accnumber' => 'required|max:20',
-            'refnumber' => 'required',
-            'amount' => 'required',
-            // 'description' => '',
+            'name' => 'required',
 
         ]);
 
-        if ($request->type == 'Custom') {
-            $utilitypayment->type = $request->costometype;
-        } else {
-            $utilitypayment->type = $request->type;
-        }
+        $PaymentType->name = $request->name;
+        $PaymentType->save();
 
-        $utilitypayment->accnumber = $request->accnumber;
-        $utilitypayment->refnumber = $request->refnumber;
-        $utilitypayment->amount = $request->amount;
-        $utilitypayment->description = $request->description;
-        $utilitypayment->save();
-
-        return redirect('utilitypayment/' . $utilitypayment->id)->with('success', 'Product Added');
+        return redirect('PaymentType/create')->with('success', 'Added');
     }
 
     /**
@@ -71,8 +56,7 @@ class UtilitypaymentController extends Controller
      */
     public function show($id)
     {
-        $utilitypayment = Utilitypayment::find($id);
-        return View('utilitypayments.show')->with('utilitypayment', $utilitypayment);
+        //
     }
 
     /**

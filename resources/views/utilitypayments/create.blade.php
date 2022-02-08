@@ -53,28 +53,21 @@
           <form action="{{url('./utilitypayment')}}" method='post'>
             {{csrf_field()}}
             <div class="card-body">
-                <div class="form-group">
-                    <label for="selectType">Select Type</label>
-                    <select class="form-control" id="selectType" name="type" onchange="changeStatus()">
-                      <option value="Dialog Mobile">Dialog Mobile</option>
-                      <option value="Dialog TV">Dialog TV</option>
-                      <option value="Dialog HBB/CDMA">Dialog HBB/CDMA</option>
-                      <option value="4">Dialog WiMax</option>
-                      <option value="4">Hutch</option>
-                      <option value="4">Airtel</option>
-                      <option value="4">Lanka Bell</option>
-                      <option value="4">Ceylon Electricity Board</option>
-                      <option value="4">Ceylon Electricity Company</option>
-                      <option value="4">National Water Supply</option>
-                      <option value="4">Touch Reload</option>
-                      <option value="4">Touch Cale Parking Topup</option>
-                      <option value="4"></option>
-                      <option value="4">Dialog WiMax</option>
-                      <option value="Custom">Custom</option>
-                    </select>
-                    <input type="hidden" name="costometype" class="form-control " placeholder="Enter Bill Type" id="costometype" style=" margin-top:5px;">
-                    {{-- <div id="hidden_div" style="display: none;">Hello hidden content</div> --}}
-                  </div>
+              <div class="form-group">
+                <a href="{{url('./PaymentType/create')}}" class="btn btn-primary float-right"><i class="fas fa-plus-circle"> </i> Add Type</a>
+              </div>
+              <div class="form-group">
+                <label for="selectType">Select Type</label>
+                <select class="form-control" id="selectType" name="type" onchange="changeStatus()">
+                  @foreach ($paymentTypes as $paymentType)
+
+                  <option value="Dialog Mobile">{{$paymentType->name}}</option>
+                  @endforeach
+                  <option value="Custom">Custom</option>
+                </select>
+                <input type="hidden" name="costometype" class="form-control " placeholder="Enter Bill Type" id="costometype" style=" margin-top:5px;">
+                {{-- <div id="hidden_div" style="display: none;">Hello hidden content</div> --}}
+              </div>
               <div class="form-group">
                 <label for="accountnumber">Account Number</label>
                 <input type="number" name="accnumber" class="form-control" id="accountnumber" placeholder="Enter Account Number" required>
@@ -116,14 +109,14 @@
           }, 5000);
 
         });
-        function changeStatus(){
-            var status = document.getElementById("selectType");
-            if(status.value=="Custom"){
-                document.getElementById("costometype").type="show";
-            }
-            else{
-                document.getElementById("costometype").type="hidden";
-            }
-            }
+
+        function changeStatus() {
+          var status = document.getElementById("selectType");
+          if (status.value == "Custom") {
+            document.getElementById("costometype").type = "show";
+          } else {
+            document.getElementById("costometype").type = "hidden";
+          }
+        }
       </script>
       @endsection
