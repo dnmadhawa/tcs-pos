@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\InvoiceItem;
 use App\Models\Invoice;
-use Carbon\Carbon;
+use App\Models\Expenses;
+use App\Models\utilitypayment;
 
 class DashboardController extends Controller
 {
@@ -45,6 +46,12 @@ class DashboardController extends Controller
 
         $total =  Invoice::whereDay('created_at', now()->day)->get()->sum('total');
         $data += ['total' => $total];
+
+        $expenses =  Expenses::whereDay('created_at', now()->day)->get()->count();
+        $data += ['expenses' => $expenses];
+
+        $utilitypayment =  utilitypayment::whereDay('created_at', now()->day)->get()->count();
+        $data += ['utilitypayment' => $utilitypayment];
         return  $data;
     }
 
@@ -58,6 +65,13 @@ class DashboardController extends Controller
 
         $total =  Invoice::whereDay('created_at', now()->month)->get()->sum('total');
         $data += ['total' => $total];
+
+
+        $expenses =  Expenses::whereDay('created_at', now()->month)->get()->count();
+        $data += ['expenses' => $expenses];
+
+        $utilitypayment =  utilitypayment::whereDay('created_at', now()->month)->get()->count();
+        $data += ['utilitypayment' => $utilitypayment];
         return  $data;
     }
 
@@ -71,6 +85,13 @@ class DashboardController extends Controller
 
         $total =  Invoice::whereDay('created_at', now()->year)->get()->sum('total');
         $data += ['total' => $total];
+
+
+        $expenses =  Expenses::whereDay('created_at', now()->year)->get()->count();
+        $data += ['expenses' => $expenses];
+
+        $utilitypayment =  utilitypayment::whereDay('created_at', now()->year)->get()->count();
+        $data += ['utilitypayment' => $utilitypayment];
         return  $data;
     }
 }

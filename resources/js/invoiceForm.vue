@@ -122,7 +122,7 @@ import Items from './components/invoice/Items.vue';
                         .then(response =>{
                             if (response.data.isAdded) {
                                 console.log(response.data);
-                                window.location.href = "http://127.0.0.1:8000/invoice/"+response.data.id;
+                                window.location.href = "/invoice/"+response.data.id;
                                 // location.reload();
                             }else{
                                 alert(response.data.error)
