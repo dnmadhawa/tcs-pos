@@ -38,14 +38,15 @@
             {{csrf_field()}}
             <div class="card-body">
                 <div class="form-group">
-                    <label for="exampleFormControlSelect1">Select Type</label>
-                    <select class="form-control" id="exampleFormControlSelect1" name="type">
+                    <label for="selectType">Select Type</label>
+                    <select class="form-control" id="selectType" name="type" onchange="changeStatus()">
                       <option value="eZcash">eZcash</option>
                       <option value="Electricity Bill">Electricity Bill</option>
                       <option value="Water Bill">Water Bill</option>
                       <option value="4">4</option>
-                      <option value="6">5</option>
+                      <option value="Custom">Custom</option>
                     </select>
+                    <input type="text" name="costometype" class="form-control " placeholder="Enter Bill Type" id="costometype" style="display: none; margin-top:5px;">
                   </div>
               <div class="form-group">
                 <label for="accountnumber">Account Number</label>
@@ -54,6 +55,10 @@
               <div class="form-group">
                 <label for="referencenumber">Reference Number</label>
                 <input type="text" name="refnumber" class="form-control" id="referencenumber" placeholder="Enter Reference Number" required>
+              </div>
+              <div class="form-group">
+                <label for="amount">Pay Amount</label>
+                <input type="number" name="amount" class="form-control" id="amount" placeholder="Enter Pay Amount" required>
               </div>
               <div class="form-group">
                 <label for="description">Description</label>
@@ -84,5 +89,14 @@
           }, 5000);
 
         })
+        function changeStatus(){
+            var status = document.getElementById("selectType");
+            if(status.value=="Custom"){
+                document.getElementById("costometype").style.display="block";
+            }
+            else{
+                document.getElementById("costometype").style.display="none";
+            }
+            }
       </script>
       @endsection

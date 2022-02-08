@@ -184,6 +184,24 @@
                                 </p>
                             </a>
                         </li>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{url('/utilitypayment/create')}}" class="nav-link">
+                            <i class="nav-icon fas fa-cash-register"></i>
+                            <p>
+                                Utility Payments
+                            </p>
+                        </a>
+                    </li>
+                </li>
+                <li class="nav-item">
+                    <a href="{{url('/expenses/create')}}" class="nav-link">
+                        <i class="nav-icon fas fa-receipt"></i>
+                        <p>
+                            Expenses
+                        </p>
+                    </a>
+                </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

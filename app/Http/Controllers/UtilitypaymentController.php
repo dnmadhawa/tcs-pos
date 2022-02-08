@@ -40,13 +40,21 @@ class UtilitypaymentController extends Controller
             'type' => 'required',
             'accnumber' => 'required|max:20',
             'refnumber' => 'required',
+            'amount' => 'required',
             // 'description' => '',
 
         ]);
 
-        $utilitypayment->type = $request->type;
+        if($request->type == 'Custom'){
+            $utilitypayment->type = $request->costometype;
+        }
+        else{
+            $utilitypayment->type = $request->type;
+        }
+
         $utilitypayment->accnumber = $request->accnumber;
         $utilitypayment->refnumber = $request->refnumber;
+        $utilitypayment->amount = $request->amount;
         $utilitypayment->description = $request->description;
         $utilitypayment->save();
 

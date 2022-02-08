@@ -18,6 +18,7 @@ class CreateExpensesTable extends Migration
             $table->string('type');
             $table->string('accnumber', 20);
             $table->string('refnumber');
+            $table->decimal('amount', 10, 2);
             $table->string('description')->nullable();
             $table->timestamps();
         });

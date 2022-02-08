@@ -20,7 +20,8 @@
       position: relative;
       width: 8cm;
       margin: 0 auto;
-      margin-top: -10px color: #001028;
+      margin-top: -10px;
+      color: #001028;
       background: #FFFFFF;
       font-family: Arial, sans-serif;
       font-size: 13px;
@@ -50,7 +51,7 @@
       text-align: center;
       margin: 0 0 20px 0;
     }
-    
+
 
     #project {
       float: left;
@@ -70,6 +71,10 @@
       text-align: right;
     }
 
+    #col1{
+      text-align: right;
+    }
+
     #project div,
     #company div {
       white-space: nowrap;
@@ -86,7 +91,14 @@
     table td {
       text-align: center;
     }
+    #underline2 {
+      border-bottom: .5px solid black;
+    }
 
+
+    #underline1 {
+      border-bottom: 1px solid black;
+    }
 
     table th {
       padding: 5px 5px;
@@ -96,29 +108,9 @@
       font-weight: normal;
     }
 
-    table .service,
-    table .desc {
-      text-align: left;
-    }
-
     table td {
-      padding: 2px;
-      text-align: right;
-    }
-
-    table td.service,
-    table td.desc {
-      vertical-align: top;
-    }
-
-    table td.unit,
-    table td.qty,
-    table td.total {
-      font-size: 13px;
-    }
-
-    table td.grand {
-      border-top: 1px solid black;
+      padding: 4px;
+      /* text-align: right; */
     }
 
     #notices .notice {
@@ -166,49 +158,36 @@
           <div class="mt-4">
             <div class="row text-600 text-white bgc-default-tp1 py-25">
               <th>
-                <div class="d-none d-sm-block col-1">Type</div>
+                <div class="col-9 col-sm-3">Acc Number</div>
               </th>
               <th>
-                <div class="col-9 col-sm-3">Account Number</div>
+                <div class="d-none d-sm-block col-4 col-sm-3">Ref Number</div>
               </th>
-              <th>
-                <div class="d-none d-sm-block col-4 col-sm-2">Reference Number</div>
-              </th>
-              <th>
-                <div class="d-none d-sm-block col-4 col-sm-2">Description</div>
-              </th>
+              {{-- <th>
+                <div class="d-none d-sm-block col-4 col-sm-3">Pay Amount</div>
+              </th> --}}
             </div>
         </tr>
-    </thead>
+      </thead>
       <tbody>
+         <tr id="underline2">
+           
+          <div class="mt-4">
+            <div class="row text-600 text-white bgc-default-tp1 py-25">
+              <td>
+                <div >{{$utilitypayment->accnumber}}</div>
+              </td>
+              <td>
+                <div >{{$utilitypayment->refnumber}}</div>
+              </td>
+              {{-- <td>
+                <div >{{$utilitypayment->amount}}</div>
+              </td> --}}
+            </div>
+        </tr>
         <tr>
-            <div class="mt-4">
-              <div class="row text-600 text-white bgc-default-tp1 py-25">
-                <th>
-                  <div class="d-none d-sm-block col-1">{{$utilitypayment->type}}</div>
-                </th>
-                <th>
-                  <div class="col-9 col-sm-3">{{$utilitypayment->accnumber}}</div>
-                </th>
-                <th>
-                  <div class="d-none d-sm-block col-4 col-sm-2">{{$utilitypayment->refnumber}}</div>
-                </th>
-                <th>
-                  <div class="d-none d-sm-block col-4 col-sm-2">{{$utilitypayment->description}}</div>
-                </th>
-              </div>
-          </tr>
-        {{-- <tr>
-            <td>NO.</td>
-            <td>ITEM</td>
-            <td>PRICE</td>
-            <td>QTY</td>
-            <td>TOTAL</td>
-          </tr> --}}
-        {{-- echo $user_list; --}}
-        <tr>
-          <td colspan="5" class="grand total">GRAND TOTAL</td>
-          <td class="grand total" style="font-size: 13px;"><strong>{{$utilitypayment->description}}</strong></td>
+          <td colspan="1" id="col1">Pay Amount</td>
+          <td  style="font-size: 13px; " id="underline1"><strong>{{$utilitypayment->amount}}</strong></td>
         </tr>
       </tbody>
     </table>
@@ -234,9 +213,9 @@
   {{-- <script>
     window.addEventListener("load", window.print());
     window.onafterprint = function(event) {
-        history.back();
+      history.back();
     };
-</script> --}}
+  </script> --}}
 </body>
 
 </html>

@@ -41,13 +41,19 @@ class ExpensesController extends Controller
             'type' => 'required',
             'accnumber' => 'required|max:20',
             'refnumber' => 'required',
+            'amount' => 'required',
             // 'description' => '',
 
         ]);
-
-        $expenses->type = $request->type;
+        if($request->type == 'Custom'){
+            $expenses->type = $request->costometype;
+        }
+        else{
+            $expenses->type = $request->type;
+        }
         $expenses->accnumber = $request->accnumber;
         $expenses->refnumber = $request->refnumber;
+        $expenses->amount = $request->amount;
         $expenses->description = $request->description;
         $expenses->save();
 
@@ -63,7 +69,7 @@ class ExpensesController extends Controller
     public function show($id)
     {
         $expenses = Expenses::find($id);
-        return View('utilitypayments.show')->with('expenses', $expenses);
+        return View('expenses.show')->with('expenses', $expenses);
     }
 
     /**

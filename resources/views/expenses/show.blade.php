@@ -20,7 +20,8 @@
       position: relative;
       width: 8cm;
       margin: 0 auto;
-      margin-top: -10px color: #001028;
+      margin-top: -10px;
+      color: #001028;
       background: #FFFFFF;
       font-family: Arial, sans-serif;
       font-size: 13px;
@@ -50,7 +51,7 @@
       text-align: center;
       margin: 0 0 20px 0;
     }
-    
+
 
     #project {
       float: left;
@@ -103,6 +104,9 @@
 
     table td {
       padding: 2px;
+      /* text-align: right; */
+    }
+    #col{
       text-align: right;
     }
 
@@ -155,8 +159,8 @@
       <div>E-mail :<a href="#">thusharacom4@gmail.com</a></div>
     </div>
     <div id="project">
-      <div><span>INVOICE NO</span> #{{$utilitypayment->id}}</div>
-      <div><span>DATE</span>{{$utilitypayment->created_at}}</div>
+      <div><span>INVOICE NO</span> #{{$expenses->id}}</div>
+      <div><span>DATE</span>{{$expenses->created_at}}</div>
     </div>
   </header>
   <main>
@@ -166,46 +170,52 @@
           <div class="mt-4">
             <div class="row text-600 text-white bgc-default-tp1 py-25">
               <th>
-                <div class="d-none d-sm-block col-1">#</div>
+                <div class="d-none d-sm-block col-1">ID</div>
               </th>
               <th>
-                <div class="col-9 col-sm-3">Description</div>
+                <div class="col-9 col-sm-3">Acc Number</div>
               </th>
               <th>
-                <div class="d-none d-sm-block col-4 col-sm-2">Qty</div>
+                <div class="d-none d-sm-block col-4 col-sm-3">Ref Number</div>
               </th>
               <th>
-                <div class="d-none d-sm-block col-4 col-sm-2">Discount</div>
-              </th>
-              <th>
-                <div class="d-none d-sm-block col-sm-2">Unit Price</div>
-              </th>
-              <th>
-                <div class="col-2">Amount</div>
+                <div class="d-none d-sm-block col-4 col-sm-2">Description</div>
               </th>
             </div>
         </tr>
-        <tr>
+      </thead>
+      <tbody>
+         <tr>
+           
+          <div class="mt-4">
+            <div class="row text-600 text-white bgc-default-tp1 py-25">
+              <td>
+                <div >{{$expenses->id}}</div>
+              </td>
+              <td>
+                <div >{{$expenses->accnumber}}</div>
+              </td>
+              <td>
+                <div >{{$expenses->refnumber}}</div>
+              </td>
+              <td>
+                <div >{{$expenses->description}}</div>
+              </td>
+            </div>
+        </tr>
+        {{-- <tr>
             <th class="service">NO.</th>
             <th class="desc">ITEM</th>
             <th>PRICE<br>(Rs.)</th>
             <th>QTY</th>
             <th>TOTAL <br>(Rs.)</th>
-          </tr>
-      </thead>
-      <tbody>
+          </tr> --}}
+      
+      
         {{-- echo $user_list; --}}
         <tr>
-          <td colspan="5">SUBTOTAL</td>
-          <td class="total">{{$utilitypayment->accnumber}}</td>
-        </tr>
-        <tr>
-          <td colspan="5">DISCOUNT</td>
-          <td class="total">{{$utilitypayment->refnumber}}</td>
-        </tr>
-        <tr>
-          <td colspan="5" class="grand total">GRAND TOTAL</td>
-          <td class="grand total" style="font-size: 13px;"><strong>{{$utilitypayment->description}}</strong></td>
+          <td colspan="3" class="grand total" id="col">Pay Amount</td>
+          <td class="grand total" style="font-size: 13px; "><strong>{{$expenses->amount}}</strong></td>
         </tr>
       </tbody>
     </table>
@@ -231,9 +241,9 @@
   <script>
     window.addEventListener("load", window.print());
     window.onafterprint = function(event) {
-        history.back();
+      history.back();
     };
-</script>
+  </script>
 </body>
 
 </html>
