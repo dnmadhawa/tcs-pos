@@ -149,6 +149,7 @@
     <div id="project">
       <div><span>INVOICE NO</span> #{{$utilitypayment->id}}</div>
       <div><span>DATE</span>{{$utilitypayment->created_at}}</div>
+      <div><span>Bill Type</span>{{$utilitypayment->type}}</div>
     </div>
   </header>
   <main>
@@ -210,12 +211,12 @@
 
     </div>
   </main>
-  {{-- <script>
+  <script>
     window.addEventListener("load", window.print());
     window.onafterprint = function(event) {
       history.back();
     };
-  </script> --}}
+  </script>
 </body>
 
 </html>

@@ -56,10 +56,20 @@
                 <div class="form-group">
                     <label for="selectType">Select Type</label>
                     <select class="form-control" id="selectType" name="type" onchange="changeStatus()">
-                      <option value="eZcash">eZcash</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
+                      <option value="Dialog Mobile">Dialog Mobile</option>
+                      <option value="Dialog TV">Dialog TV</option>
+                      <option value="Dialog HBB/CDMA">Dialog HBB/CDMA</option>
+                      <option value="4">Dialog WiMax</option>
+                      <option value="4">Hutch</option>
+                      <option value="4">Airtel</option>
+                      <option value="4">Lanka Bell</option>
+                      <option value="4">Ceylon Electricity Board</option>
+                      <option value="4">Ceylon Electricity Company</option>
+                      <option value="4">National Water Supply</option>
+                      <option value="4">Touch Reload</option>
+                      <option value="4">Touch Cale Parking Topup</option>
+                      <option value="4"></option>
+                      <option value="4">Dialog WiMax</option>
                       <option value="Custom">Custom</option>
                     </select>
                     <input type="hidden" name="costometype" class="form-control " placeholder="Enter Bill Type" id="costometype" style=" margin-top:5px;">
