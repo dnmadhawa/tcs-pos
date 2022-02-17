@@ -61,7 +61,7 @@
                 <select class="form-control" id="selectType" name="type" onchange="changeStatus()">
                   @foreach ($paymentTypes as $paymentType)
 
-                  <option value="Dialog Mobile">{{$paymentType->name}}</option>
+                  <option value="{{$paymentType->name}}">{{$paymentType->name}}</option>
                   @endforeach
                   <option value="Custom">Custom</option>
                 </select>

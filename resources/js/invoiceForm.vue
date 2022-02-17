@@ -121,7 +121,8 @@ import Items from './components/invoice/Items.vue';
                             })
                         .then(response =>{
                             if (response.data.isAdded) {
-                                window.location.href = "/invoice/"+response.data.id;
+                                console.log( window.Laravel.url+"/invoice/"+response.data.id);
+                                // window.location.href = window.Laravel.baseUrl+"/invoice/"+response.data.id;
                                 // location.reload();
                             }else{
                                 alert(response.data.error)

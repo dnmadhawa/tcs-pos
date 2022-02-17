@@ -146,7 +146,7 @@
 <body>
   <header class="clearfix">
     <div id="logo">
-      <img src="{{ asset('dist/img/logo.png') }}">
+      <img src="{{ asset('dist/img/logo1.png') }}">
       {{-- <div class="notice" style="font-size: 12px;">Supply Of Heavy Machinary Cylinder Repair Kits, Oilseals,O-rings,
         Dust seal,Pressure seal, Floating seals & Every kind of NOK Seals.</div> --}}
     </div>

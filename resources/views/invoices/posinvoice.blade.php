@@ -19,7 +19,7 @@
     body {
       position: relative;
       width: 8cm;
-      margin: 0 auto;
+      margin-right: -10px;
       margin-top: -10px;
       color: #001028;
       background: #FFFFFF;
@@ -28,7 +28,12 @@
       font-family: Arial;
     }
 
+    main{
+      margin: -10px;
+    }
+
     header {
+      margin: -10px;
       padding: 10px 0;
       margin-bottom: 5px;
     }
@@ -121,6 +126,10 @@
     table td.grand {
       border-top: 1px solid black;
     }
+    /* tbody{
+      margin-right: 3px;
+    } */
+    
 
     #notices .notice {
       text-align: center;
@@ -143,7 +152,7 @@
 <body>
   <header class="clearfix">
     <div id="logo">
-      <img src="{{ asset('dist/img/logo.png') }}">
+      <img src="{{ asset('dist/img/logo1.png') }}">
       {{-- <div class="notice" style="font-size: 12px;">Supply Of Heavy Machinary Cylinder Repair Kits, Oilseals,O-rings,
         Dust seal,Pressure seal, Floating seals & Every kind of NOK Seals.</div> --}}
     </div>
