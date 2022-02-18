@@ -28,7 +28,7 @@
       font-family: Arial;
     }
 
-    main{
+    main {
       margin: -10px;
     }
 
@@ -126,10 +126,11 @@
     table td.grand {
       border-top: 1px solid black;
     }
+
     /* tbody{
       margin-right: 3px;
     } */
-    
+
 
     #notices .notice {
       text-align: center;
@@ -211,6 +212,11 @@
             document.write("<td>" + items['price'] + "</td>");
             document.write("<td>" + items['sale_price'] + "</td>");
             document.write("</tr>");
+            if (items['warranty'] > 0) {
+              document.write("<tr>");
+              document.write("<td colspan='5' style='text-align: center; padding-top: 0px; font-size: 12px;'>(" + items['warranty'] + " Month Warranty)</td>");
+              document.write("</tr>");
+            }
             i++;
           });
         </script>

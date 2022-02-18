@@ -39,6 +39,7 @@
                              <th class="center">Qty</th>
                              <th class="center">Discount</th>
                              <th class="center">Amount</th>
+                             <th class="center">Warranty </th>
                          </tr>
                      </thead>
                      <tbody>
@@ -49,6 +50,7 @@
                              <td class="right">{{item.quantity}}</td>
                              <td class="center">{{item.pdiscount}}</td>
                              <td class="right">{{item.sale_price}}</td>
+                             <td class="right">{{item.warranty}} Months</td>
                          </tr>
                      </tbody>
                  </table>
@@ -187,6 +189,7 @@ import VueBootstrapTable from "vue2-bootstrap-table2";
                                 'Discount' : idata.discount,
                                 'Total' : idata.total,
                                 'Date' : dateStr,
+                                
                             })
                         })
                     })

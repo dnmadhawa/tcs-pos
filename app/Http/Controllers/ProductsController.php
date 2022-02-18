@@ -77,6 +77,7 @@ class ProductsController extends Controller
         $product->salesprice = $request->sprice;
         $product->purchaseprice = $pprice;
         $product->quantity = $request->quantity;
+        $product->warranty = $request->warranty;
         $product->save();
 
         return redirect('product/create')->with('success', 'Product Added');
@@ -134,6 +135,7 @@ class ProductsController extends Controller
         $product->salesprice = $request->input('sprice');
         $product->purchaseprice = $request->input('pprice');
         $product->quantity = $request->input('quantity');
+        $product->warranty = $request->input('warranty');
         $product->save();
 
         return redirect('product')->with('success', 'Product Updated');

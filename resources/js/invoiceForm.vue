@@ -89,7 +89,7 @@ import Items from './components/invoice/Items.vue';
             }
         },
         methods:{
-            save() {   
+            save() {
                 let validated = true;    
                 if (this.items.length>0) {                    
                     this.items.forEach(item => {
@@ -117,12 +117,12 @@ import Items from './components/invoice/Items.vue';
                             tDiscount:this.tDiscount,
                             total:this.total,
                             payAmount:this.payAmount,
-                            balance:this.balance
+                            balance:this.balance,
                             })
                         .then(response =>{
                             if (response.data.isAdded) {
-                                console.log( window.Laravel.url+"/invoice/"+response.data.id);
-                                // window.location.href = window.Laravel.baseUrl+"/invoice/"+response.data.id;
+                                // console.log( window.location.origin+"/invoice/"+response.data.id);
+                                window.location.href = window.location.origin+"/invoice/"+response.data.id;
                                 // location.reload();
                             }else{
                                 alert(response.data.error)
@@ -159,6 +159,7 @@ import Items from './components/invoice/Items.vue';
                         qty:1.00,
                         discount:0.00,
                         salePrice:value.salesprice,
+                        warranty:value.warranty,
                     });
                     this.inputName=[];
                 }

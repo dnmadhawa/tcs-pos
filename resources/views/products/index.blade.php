@@ -18,7 +18,7 @@
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="{{ url('home') }}">Home</a></li>
-          <li class="breadcrumb-item"><a >Product Table</a></li>
+          <li class="breadcrumb-item"><a>Product Table</a></li>
           <li class="breadcrumb-item"><a href="{{ url('product/create') }}">Add product</a></li>
         </ol>
       </div>
@@ -40,14 +40,15 @@
           <th>Sales Price</th>
           <th>Purchase Price</th>
           <th>Quantity</th>
+          <th>Warranty</th>
           <th>Action</th>
         </tr>
       </thead>
 
       <tbody>
         {{-- check products in database --}}
-      @if (count($products) > 0)
-      @foreach ($products as $product)
+        @if (count($products) > 0)
+        @foreach ($products as $product)
         <tr>
           <td>{{ $product->id }}</td>
           <td>{{ $product->barcodeid }}</td>
@@ -55,26 +56,27 @@
           <td>{{ $product->salesprice }}</td>
           <td>{{ $product->purchaseprice }}</td>
           <td>{{ $product->quantity }}</td>
+          <td>{{ $product->warranty }} Months</td>
           <td>
-            <form action="{{ url('product',  $product->id  ) }}" method="POST" onSubmit="return confirm('Do you want to delete?') " >
+            <form action="{{ url('product',  $product->id  ) }}" method="POST" onSubmit="return confirm('Do you want to delete?') ">
               @csrf
-          
+
               @method('DELETE')
               <button type="submit" class="btn btn-danger btn-block ">Delete</button>
-              <a href="/product/{{ $product->id }}/edit" >
+              <a href="/product/{{ $product->id }}/edit">
                 <button type="button" class="btn btn-warning btn-block mt-1 ">Edit</button>
               </a>
-          </form>
+            </form>
             {{-- <a href="/products/{{ $product->id }}" class="btn btn-default">Delete</a> --}}
-          
+
           </td>
         </tr>
         @endforeach
-      {{-- check products in database  else part--}}
-      @else
-          <p>No Products Found</p>
-      {{-- endif --}}
-      @endif
+        {{-- check products in database  else part--}}
+        @else
+        <p>No Products Found</p>
+        {{-- endif --}}
+        @endif
       </tbody>
 
       <tfoot>
@@ -85,6 +87,7 @@
           <th>Sales Price</th>
           <th>Purchase Price</th>
           <th>Quantity</th>
+          <th>Warranty</th>
           <th>Action</th>
         </tr>
       </tfoot>
@@ -131,15 +134,15 @@
       "responsive": true,
     });
   });
-  
-  //message alert remover
-    $("document").ready(function(){
 
-    setTimeout(function(){
-        $("div.alert").remove();
-        
+  //message alert remover
+  $("document").ready(function() {
+
+    setTimeout(function() {
+      $("div.alert").remove();
+
     }, 5000);
 
-    })
+  })
 </script>
 @endsection

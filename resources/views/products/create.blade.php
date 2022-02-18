@@ -73,6 +73,10 @@
                 <label for="quantity">Quantity</label>
                 <input type="number" name="quantity" class="form-control amount" id="#" placeholder="Enter Quantity" required>
               </div>
+              <div class="form-group">
+                <label for="w">Warranty (months)</label>
+                <input type="number" name="warranty" class="form-control amount" id="w" placeholder="Enter warranty" value="0">
+              </div>
             </div>
             <!-- /.card-body -->
             <div class="card-footer">

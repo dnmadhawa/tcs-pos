@@ -102,6 +102,7 @@ class InvoicesController extends Controller
             $invoiceItem->quantity = $item['qty'];
             $invoiceItem->pdiscount = $item['discount'];
             $invoiceItem->sale_price = $item['salePrice'];
+            $invoiceItem->warranty = $item['warranty'];
             $invoiceItem->save();
 
             $product = Product::find($item['id']);
@@ -131,7 +132,6 @@ class InvoicesController extends Controller
         // print_r($data);
         // return View('invoices.show')->with('data', $data);
         return View('invoices.posinvoice')->with('data', $data);
-
     }
 
     /**

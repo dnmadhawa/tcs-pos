@@ -78,6 +78,10 @@
                 <input type="text" name="quantity" class="form-control amount" id="#" placeholder="Enter Quantity" value="{{ $product->quantity }}">
                 {{-- <input type="hidden" name="quantity" value="{{ $product->id }}"> --}}
               </div>
+              <div class="form-group">
+                <label for="w">Warranty (months)</label>
+                <input type="number" name="warranty" class="form-control amount" id="w" placeholder="Enter warranty" value="{{ $product->warranty }}">
+              </div>
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
