@@ -7,7 +7,7 @@
 @section('content')
 
 <!-- Content Header (Page header) -->
-<div class="content-header">
+<div class="content-header" onload="loadd()">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
@@ -35,7 +35,7 @@
                             <i class="fas fa-chart-pie mr-1"></i>
                             Sales
                         </h3>
-                        <div class="card-tools">
+                        <!-- <div class="card-tools">
                             <ul class="nav nav-pills ml-auto">
                                 <li class="nav-item">
                                     <a class="nav-link active" href="#revenue-chart" data-toggle="tab">Area</a>
@@ -44,7 +44,7 @@
                                     <a class="nav-link" href="#sales-chart" data-toggle="tab">Donut</a>
                                 </li>
                             </ul>
-                        </div>
+                        </div> -->
                     </div><!-- /.card-header -->
                     <div class="card-body">
                         <div class="tab-content p-0">
@@ -52,9 +52,9 @@
                             <div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;">
                                 <canvas id="revenue-chart-canvas" height="300" style="height: 300px;"></canvas>
                             </div>
-                            <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
+                            <!-- <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
                                 <canvas id="sales-chart-canvas" height="300" style="height: 300px;"></canvas>
-                            </div>
+                            </div> -->
                         </div>
                     </div><!-- /.card-body -->
                 </div>
@@ -120,6 +120,24 @@
 
 @section('script')
 
+<script>
+    var monthTotal = [];
+    var monthName = [];
+
+
+    $.get("/api/monthlyTotal", function(data) {
+        // console.log(data);
+        var length = data.length;
+
+        for (var i = 0; i < length; i++) {
+            monthTotal.push(data[i].total);
+            // values.push(data[i].Population);
+        }
+        console.log(monthTotal);
+    });
+</script>
+
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
+
 @endsection

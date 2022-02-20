@@ -15,6 +15,9 @@ class UtilitypaymentController extends Controller
      */
     public function index()
     {
+        $Utilitypayments = Utilitypayment::all();
+        // dd($products);
+        return view('utilitypayments.index')->with('Utilitypayments', $Utilitypayments);
     }
 
     /**

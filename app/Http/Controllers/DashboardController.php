@@ -7,6 +7,8 @@ use App\Models\InvoiceItem;
 use App\Models\Invoice;
 use App\Models\Expenses;
 use App\Models\utilitypayment;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -38,60 +40,102 @@ class DashboardController extends Controller
      */
     public function dayAnalytics()
     {
-
         $data = [];
-        $InvoiceItem =  InvoiceItem::whereDay('created_at', now()->day)->get()->count();
+        $InvoiceItem = DB::table('invoice_items')
+            ->whereYear('created_at', Carbon::now()->year)
+            ->whereMonth('created_at', Carbon::now()->month)
+            ->whereDay('created_at', Carbon::now()->day)
+            ->count();
 
         $data += ['InvoiceItem' => $InvoiceItem];
 
-        $total =  Invoice::whereDay('created_at', now()->day)->get()->sum('total');
+        $total = DB::table('invoices')
+            ->whereYear('created_at', Carbon::now()->year)
+            ->whereMonth('created_at', Carbon::now()->month)
+            ->whereDay('created_at', Carbon::now()->day)
+            ->sum('total');
         $data += ['total' => $total];
 
-        $expenses =  Expenses::whereDay('created_at', now()->day)->get()->count();
+        $expenses = DB::table('expenses')
+            ->whereYear('created_at', Carbon::now()->year)
+            ->whereMonth('created_at', Carbon::now()->month)
+            ->whereDay('created_at', Carbon::now()->day)
+            ->count();
         $data += ['expenses' => $expenses];
 
-        $utilitypayment =  utilitypayment::whereDay('created_at', now()->day)->get()->count();
+        $utilitypayment = DB::table('utilitypayments')
+            ->whereYear('created_at', Carbon::now()->year)
+            ->whereMonth('created_at', Carbon::now()->month)
+            ->whereDay('created_at', Carbon::now()->day)
+            ->count();
         $data += ['utilitypayment' => $utilitypayment];
         return  $data;
     }
 
     public function monthAnalytics()
     {
-
         $data = [];
-        $InvoiceItem =  InvoiceItem::whereDay('created_at', now()->month)->get()->count();
+        $InvoiceItem = DB::table('invoice_items')
+            ->whereYear('created_at', Carbon::now()->year)
+            ->whereMonth('created_at', Carbon::now()->month)
+            ->get()->count();
 
         $data += ['InvoiceItem' => $InvoiceItem];
 
-        $total =  Invoice::whereDay('created_at', now()->month)->get()->sum('total');
+        $total = DB::table('invoices')
+            ->whereYear('created_at', Carbon::now()->year)
+            ->whereMonth('created_at', Carbon::now()->month)
+            ->sum('total');
         $data += ['total' => $total];
 
-
-        $expenses =  Expenses::whereDay('created_at', now()->month)->get()->count();
+        $expenses = DB::table('expenses')
+            ->whereYear('created_at', Carbon::now()->year)
+            ->whereMonth('created_at', Carbon::now()->month)
+            ->count();
         $data += ['expenses' => $expenses];
 
-        $utilitypayment =  utilitypayment::whereDay('created_at', now()->month)->get()->count();
+        $utilitypayment = DB::table('utilitypayments')
+            ->whereYear('created_at', Carbon::now()->year)
+            ->whereMonth('created_at', Carbon::now()->month)
+            ->count();
         $data += ['utilitypayment' => $utilitypayment];
         return  $data;
     }
 
     public function yearAnalytics()
     {
-
         $data = [];
-        $InvoiceItem =  InvoiceItem::whereDay('created_at', now()->year)->get()->count();
+        $InvoiceItem = DB::table('invoice_items')
+            ->whereYear('created_at', Carbon::now()->year)
+            ->get()->count();
 
         $data += ['InvoiceItem' => $InvoiceItem];
 
-        $total =  Invoice::whereDay('created_at', now()->year)->get()->sum('total');
+        $total = DB::table('invoices')
+            ->whereYear('created_at', Carbon::now()->year)
+            ->sum('total');
         $data += ['total' => $total];
 
-
-        $expenses =  Expenses::whereDay('created_at', now()->year)->get()->count();
+        $expenses = DB::table('expenses')
+            ->whereYear('created_at', Carbon::now()->year)
+            ->count();
         $data += ['expenses' => $expenses];
 
-        $utilitypayment =  utilitypayment::whereDay('created_at', now()->year)->get()->count();
+        $utilitypayment = DB::table('utilitypayments')
+            ->whereYear('created_at', Carbon::now()->year)
+            ->count();
         $data += ['utilitypayment' => $utilitypayment];
         return  $data;
+    }
+
+    public function monthlyTotal()
+    {
+        $data = Invoice::selectRaw(' monthname(created_at) month, sum(total) total')
+            ->whereYear('created_at', Carbon::now()->year)
+            ->groupBy('month')
+            ->orderBy('month', 'desc')
+            ->get();
+
+        return $data;
     }
 }

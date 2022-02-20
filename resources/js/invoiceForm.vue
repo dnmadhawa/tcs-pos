@@ -27,6 +27,7 @@
                             <th>Quantity</th>
                             <th>Discount</th>
                             <th>Sale Price</th>
+                            <th>Warranty</th>
                             <th width="5%"></th>
                         </tr>
                     </thead>

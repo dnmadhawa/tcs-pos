@@ -31,3 +31,4 @@ Route::get('/invoiceItem/{invoiceId}', [InvoiceItemController::class, 'getInvoic
 Route::get('/dashboardData', [DashboardController::class, 'dayAnalytics']);
 Route::get('/dashboardMonth', [DashboardController::class, 'monthAnalytics']);
 Route::get('/dashboardYear', [DashboardController::class, 'yearAnalytics']);
+Route::get('/monthlyTotal', [DashboardController::class, 'monthlyTotal']);

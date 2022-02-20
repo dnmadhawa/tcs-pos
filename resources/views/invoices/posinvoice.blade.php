@@ -19,8 +19,7 @@
     body {
       position: relative;
       width: 8cm;
-      margin-right: -10px;
-      margin-top: -10px;
+      margin: auto;
       color: #001028;
       background: #FFFFFF;
       font-family: Arial, sans-serif;
@@ -47,14 +46,14 @@
     }
 
     h1 {
-      border-top: 1px solid black;
-      border-bottom: 1px solid black;
+      /* border-top: 1px solid black;
+      border-bottom: 1px solid black; */
       color: black;
       font-size: 2em;
       line-height: 1.4em;
       font-weight: normal;
       text-align: center;
-      margin: 0 0 20px 0;
+      margin: 0;
     }
 
 
@@ -72,8 +71,13 @@
     }
 
     #company {
-      float: right;
-      text-align: right;
+      /* float: right; */
+      /* text-align: right; */
+      /* display: flex;
+      justify-content: center;
+      flex-direction: column; */
+      margin-bottom: 10px;
+
     }
 
     #project div,
@@ -100,6 +104,7 @@
       border-bottom: 1px solid black;
       white-space: nowrap;
       font-weight: normal;
+      font-weight: bold;
     }
 
     table .service,
@@ -153,21 +158,24 @@
 <body>
   <header class="clearfix">
     <div id="logo">
-      <img src="{{ asset('dist/img/logo1.png') }}">
+      <!-- <img src="{{ asset('dist/img/logo1.png') }}"> -->
       {{-- <div class="notice" style="font-size: 12px;">Supply Of Heavy Machinary Cylinder Repair Kits, Oilseals,O-rings,
         Dust seal,Pressure seal, Floating seals & Every kind of NOK Seals.</div> --}}
+      <h1>THUSHARA CELLULAR <br> SERVICE</h1>
     </div>
-    <h1>INVOICE</h1>
-    <div id="company" class="clearfix">
-      <div>THUSHARA CELLULAR SERVICE</div>
-      <div>No. 8/3, Kururnegala Road, Makandura</div>
-      {{-- <div>Branches:</div> --}}
-      <div>Tel :0777834254 / 07661122656</div>
-      <div>E-mail :<a href="#">thusharacom4@gmail.com</a></div>
+    <!-- <h1>INVOICE</h1> -->
+    <div id="company" class="clearfix ">
+      <center>
+        <!-- <div>THUSHARA CELLULAR SERVICE</div> -->
+        <div>No. 8/3, Kururnegala Road, Makandura</div>
+        {{-- <div>Branches:</div> --}}
+        <div>Tel :0777834254 / 0766112656</div>
+        <div>E-mail :<a href="#">thusharacom4@gmail.com</a></div>
+      </center>
     </div>
     <div id="project">
-      <div><span>INVOICE NO</span> #{{$data->id}}</div>
-      <div><span>DATE</span>{{$data->created_at}}</div>
+      <div><span>INVOICE NO :</span> #{{$data->id}}</div>
+      <div><span>DATE :</span>{{$data->created_at}}</div>
     </div>
   </header>
   <main>

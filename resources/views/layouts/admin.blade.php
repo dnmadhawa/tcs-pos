@@ -107,11 +107,11 @@
                 @endguest
 
                 <!-- control-sidebar -->
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
                         <i class="fas fa-th-large"></i>
                     </a>
-                </li>
+                </li> -->
             </ul>
         </nav>
         <!-- /.navbar -->
@@ -144,7 +144,7 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-                        <li class="nav-item">
+                        <li class="nav-item border-bottom">
                             <a href="{{url('/dashboard')}}" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
@@ -160,7 +160,7 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item border-bottom">
                             <a href="{{url('/invoice')}}" class="nav-link">
                                 <i class="nav-icon fas fa-book"></i>
                                 <p>
@@ -176,7 +176,7 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item border-bottom">
                             <a href="{{url('/product')}}" class="nav-link">
                                 <i class="nav-icon fas fa-list-alt"></i>
                                 <p>
@@ -184,24 +184,24 @@
                                 </p>
                             </a>
                         </li>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{url('/utilitypayment/create')}}" class="nav-link">
-                            <i class="nav-icon fas fa-cash-register"></i>
-                            <p>
-                                Utility Payments
-                            </p>
-                        </a>
-                    </li>
-                </li>
-                <li class="nav-item">
-                    <a href="{{url('/expenses/create')}}" class="nav-link">
-                        <i class="nav-icon fas fa-receipt"></i>
-                        <p>
-                            Expenses
-                        </p>
-                    </a>
-                </li>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{url('/utilitypayment/create')}}" class="nav-link">
+                                <i class="nav-icon fas fa-cash-register"></i>
+                                <p>
+                                    Utility Payments
+                                </p>
+                            </a>
+                        </li>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{url('/utilitypayment')}}" class="nav-link">
+                                <i class="nav-icon fas fa-receipt"></i>
+                                <p>
+                                    Expenses
+                                </p>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

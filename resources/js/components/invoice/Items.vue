@@ -7,6 +7,7 @@
             <td><input type="number" class="form-control" :value="item.qty" v-on:keyup="calSalePrice(index,$event.target.value)" @change="calSalePrice(index,$event.target.value)" min="1"></td>
             <td><input type="number" class="form-control" :value="item.discount" v-on:keyup="calDiscountPrice(index,$event.target.value)" @change="calDiscountPrice(index,$event.target.value)"  min="0"></td>
             <td><input type="text" class="form-control" :value="item.salePrice" readonly></td>
+            <td><input type="text" class="form-control" :value="item.warranty" readonly></td>
             <td><i class="fa fa-trash text-danger" @click="onDelete(item.id)"></i></td>
         </tr>
     </tbody>

@@ -42,14 +42,14 @@
     }
 
     h1 {
-      border-top: 1px solid black;
-      border-bottom: 1px solid black;
+      /* border-top: 1px solid black;
+      border-bottom: 1px solid black; */
       color: black;
       font-size: 2em;
       line-height: 1.4em;
       font-weight: normal;
       text-align: center;
-      margin: 0 0 20px 0;
+      margin: 0;
     }
 
 
@@ -67,11 +67,10 @@
     }
 
     #company {
-      float: right;
-      text-align: right;
+      margin-bottom: 10px;
     }
 
-    #col1{
+    #col1 {
       text-align: right;
     }
 
@@ -91,6 +90,7 @@
     table td {
       text-align: center;
     }
+
     #underline2 {
       border-bottom: .5px solid black;
     }
@@ -105,7 +105,7 @@
       color: black;
       border-bottom: 1px solid black;
       white-space: nowrap;
-      font-weight: normal;
+      font-weight: bold;
     }
 
     table td {
@@ -134,17 +134,20 @@
 <body>
   <header class="clearfix">
     <div id="logo">
-      <img src="{{ asset('dist/img/logo1.png') }}">
+      <!-- <img src="{{ asset('dist/img/logo1.png') }}"> -->
       {{-- <div class="notice" style="font-size: 12px;">Supply Of Heavy Machinary Cylinder Repair Kits, Oilseals,O-rings,
         Dust seal,Pressure seal, Floating seals & Every kind of NOK Seals.</div> --}}
+      <h1>THUSHARA CELLULAR <br> SERVICE</h1>
     </div>
-    <h1>INVOICE</h1>
-    <div id="company" class="clearfix">
-      <div>THUSHARA CELLULAR SERVICE</div>
-      <div>No. 8/3, Kururnegala Road, Makandura</div>
-      {{-- <div>Branches:</div> --}}
-      <div>Tel :0777834254 / 07661122656</div>
-      <div>E-mail :<a href="#">thusharacom4@gmail.com</a></div>
+    <!-- <h1>INVOICE</h1> -->
+    <div id="company" class="clearfix ">
+      <center>
+        <!-- <div>THUSHARA CELLULAR SERVICE</div> -->
+        <div>No. 8/3, Kururnegala Road, Makandura</div>
+        {{-- <div>Branches:</div> --}}
+        <div>Tel :0777834254 / 0766112656</div>
+        <div>E-mail :<a href="#">thusharacom4@gmail.com</a></div>
+      </center>
     </div>
     <div id="project">
       <div><span>INVOICE NO</span> #{{$utilitypayment->id}}</div>
@@ -171,24 +174,25 @@
         </tr>
       </thead>
       <tbody>
-         <tr id="underline2">
-           
+        <tr id="underline1">
+
           <div class="mt-4">
             <div class="row text-600 text-white bgc-default-tp1 py-25">
               <td>
-                <div >{{$utilitypayment->accnumber}}</div>
+                <div>{{$utilitypayment->accnumber}}</div>
               </td>
               <td>
-                <div >{{$utilitypayment->refnumber}}</div>
+                <div>{{$utilitypayment->refnumber}}</div>
               </td>
               {{-- <td>
-                <div >{{$utilitypayment->amount}}</div>
-              </td> --}}
+                <div >{{$utilitypayment->amount}}
             </div>
+            </td> --}}
+          </div>
         </tr>
         <tr>
           <td colspan="1" id="col1">Pay Amount</td>
-          <td  style="font-size: 13px; " id="underline1"><strong>{{$utilitypayment->amount}}</strong></td>
+          <td style="font-size: 13px; " id="underline1"><strong>{{$utilitypayment->amount}}</strong></td>
         </tr>
       </tbody>
     </table>
