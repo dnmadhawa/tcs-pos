@@ -48,6 +48,7 @@ class InvoicesController extends Controller
      */
     public function store(Request $request)
     {
+        return  $request;
         $total = 0;
         foreach ($request->items as $item) {
             $product = Product::find($item['id']);

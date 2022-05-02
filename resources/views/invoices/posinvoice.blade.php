@@ -25,6 +25,7 @@
       font-family: Arial, sans-serif;
       font-size: 13px;
       font-family: Arial;
+      padding: 0 20px;
     }
 
     main {
@@ -274,7 +275,9 @@
   <script>
     window.addEventListener("load", window.print());
     window.onafterprint = function(event) {
-      history.back();
+      // alert(document.referrer);
+      window.location.href = document.referrer;
+      // window.history.back();
     };
   </script>
 </body>

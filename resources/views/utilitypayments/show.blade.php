@@ -218,7 +218,9 @@
   <script>
     window.addEventListener("load", window.print());
     window.onafterprint = function(event) {
-      history.back();
+      // alert(document.referrer);
+      window.location.href = document.referrer;
+      // window.history.back();
     };
   </script>
 </body>

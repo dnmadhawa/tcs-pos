@@ -185,6 +185,7 @@ import Items from './components/invoice/Items.vue';
                             qty:1.00,
                             discount:0.00,
                             salePrice:ob[0].salesprice,
+                            warranty:ob[0].warranty,
                         });
                         this.inputBarcode="";
                         this.$refs.barcodeInput.focus();
@@ -223,7 +224,7 @@ import Items from './components/invoice/Items.vue';
                 }
             },
             _keyListener(e) {
-                console.log(e.code);
+                // console.log(e.code);
                 if (e.code == 'NumpadDivide') {
                     this.$refs.discount.select();
                 } 
@@ -233,7 +234,7 @@ import Items from './components/invoice/Items.vue';
             // this.$refs.barcodeInput.focus();
             },
             inputFocas(e){
-                    console.log(e);
+                    // console.log(e);
             }
         },
         mounted: function(){
