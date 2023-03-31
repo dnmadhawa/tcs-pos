@@ -29,6 +29,6 @@
         "vue-search-select": "^2.9.5",
         "vue-select": "^3.16.0",
         "vue2-bootstrap-table2": "^1.2.1",
-        "vuetify": "^2.6.3"
+        "vuetify": "^2.6.10"
     }
 }
